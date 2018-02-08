@@ -21,6 +21,18 @@ namespace Dubbo.Net.Common
         /// 版本key
         /// </summary>
         public const string VersionKey = "version";
-        
+
+        public const string DecodeInIoThreadKey = "decode.in.io";
+        public const bool DefaultDecodeInIoThread = true;
+        public const string SerializationKey = "serialization";
+        public const byte DefaultRemotingSerialization = 6;
+        public const string IdKey = "id";
+        public const string AutoAttachInvocationIdKey = "invocationid.autoattach";
+        public const string Invoke = "$invoke";
+        public const string AsyncKey = "async";
+        public const string ReturnKey = "return";
+        public const string InputKey = "input";
+        public const string OutputKey = "output";
+        public const string SentKey = "sent";
     }
 }

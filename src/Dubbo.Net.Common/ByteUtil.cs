@@ -59,5 +59,12 @@ namespace Dubbo.Net.Common
                     ((b[off + 1] & 0xFFL) << 48) +
                     (((long)b[off + 0]) << 56);
         }
+
+        public static byte[] CopyOf(byte[] src, int length)
+        {
+            var dst = new byte[length];
+            System.Array.Copy(src,0,dst,0,Math.Min(src.Length,length));
+            return dst;
+        }
     }
 }

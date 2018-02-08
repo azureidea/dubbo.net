@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Common", "Dubbo.Net.Common\Dubbo.Net.Common.csproj", "{D10FC4AF-9F93-4F03-B182-7E355CBE090E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Common", "Dubbo.Net.Common\Dubbo.Net.Common.csproj", "{D10FC4AF-9F93-4F03-B182-7E355CBE090E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Test", "Dubbo.Net.Test\Dubbo.Net.Test.csproj", "{234EA92B-DB0A-4554-8AE4-17A554220114}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Remoting", "Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj", "{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Rpc", "Dubbo.Net.Rpc\Dubbo.Net.Rpc.csproj", "{21494EA9-4891-4CE4-99F7-14B876F8C9AB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Remoting.DotNetty", "Dubbo.Net.Remoting.DotNetty\Dubbo.Net.Remoting.DotNetty.csproj", "{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +23,22 @@ Global
 		{D10FC4AF-9F93-4F03-B182-7E355CBE090E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D10FC4AF-9F93-4F03-B182-7E355CBE090E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D10FC4AF-9F93-4F03-B182-7E355CBE090E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{234EA92B-DB0A-4554-8AE4-17A554220114}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{234EA92B-DB0A-4554-8AE4-17A554220114}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{234EA92B-DB0A-4554-8AE4-17A554220114}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{234EA92B-DB0A-4554-8AE4-17A554220114}.Release|Any CPU.Build.0 = Release|Any CPU
+		{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21494EA9-4891-4CE4-99F7-14B876F8C9AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21494EA9-4891-4CE4-99F7-14B876F8C9AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21494EA9-4891-4CE4-99F7-14B876F8C9AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21494EA9-4891-4CE4-99F7-14B876F8C9AB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -6,6 +6,11 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetty.Handlers" Version="0.4.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Codec\" />
   </ItemGroup>
 
 </Project>

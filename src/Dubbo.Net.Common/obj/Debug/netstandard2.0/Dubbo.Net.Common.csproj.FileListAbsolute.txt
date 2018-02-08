@@ -1,0 +1,9 @@
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\bin\Debug\netstandard2.0\Dubbo.Net.Common.deps.json
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\bin\Debug\netstandard2.0\Dubbo.Net.Common.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.csproj.CoreCompileInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.AssemblyInfoInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.AssemblyInfo.cs
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\bin\Debug\netstandard2.0\Dubbo.Net.Common.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Common\obj\Debug\netstandard2.0\Dubbo.Net.Common.csprojResolveAssemblyReference.cache

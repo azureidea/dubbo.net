@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj" />
+  </ItemGroup>
+
+</Project>

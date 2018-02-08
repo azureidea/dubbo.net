@@ -1,0 +1,7 @@
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Common.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Common.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.DotNetty.csprojResolveAssemblyReference.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.DotNetty.csproj.CoreCompileInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.DotNetty.AssemblyInfoInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.DotNetty.AssemblyInfo.cs
