@@ -45,7 +45,7 @@ namespace Dubbo.Net.Remoting.Transport
                 return false;
             var address = channel.RemoteAddress;
             var url = channel.Url;
-            var client = url.Port == address. && address.Ip == url.Ip;
+            var client = false;//url.Port == address. && address.Ip == url.Ip;
             channel.SetAttribute(SideKey,client?"client":"server");
             return client;
         }

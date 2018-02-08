@@ -34,5 +34,10 @@ namespace Dubbo.Net.Common
         public const string InputKey = "input";
         public const string OutputKey = "output";
         public const string SentKey = "sent";
+        public const string CodecKey = "codec";
+        public const string TimeoutKey = "timeout";
+        public const int DefaultTimeout = 1000;
+        public const int DefaultConnectTimeout = 3000;
+        public const string ConnectTimeoutKey = "connect.timeout";
     }
 }

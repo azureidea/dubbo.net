@@ -4,7 +4,6 @@ using System.Net;
 using System.Threading.Tasks;
 using Dubbo.Net.Common;
 using Dubbo.Net.Remoting.Transport;
-using IChannel= DotNetty.Transport.Channels.IChannel;
 
 namespace Dubbo.Net.Remoting.Netty
 {
@@ -19,7 +18,7 @@ namespace Dubbo.Net.Remoting.Netty
             _channel = channel ?? throw new ArgumentException("netty channel==null");
         }
 
-        static NettyChannel GetOrAddChannel(DotNetty.Transport.Channels.IChannel ch, URL url, IChannelHandler handler)
+        public static NettyChannel GetOrAddChannel(DotNetty.Transport.Channels.IChannel ch, URL url, IChannelHandler handler)
         {
             if (ch == null)
                 return null;
@@ -32,7 +31,7 @@ namespace Dubbo.Net.Remoting.Netty
             return ChannelMap[ch];
         }
 
-        static void RemoveChannelIfDisconnected(DotNetty.Transport.Channels.IChannel ch)
+        public static void RemoveChannelIfDisconnected(DotNetty.Transport.Channels.IChannel ch)
         {
             if (ch != null && ch.Active)
                 ChannelMap.TryRemove(ch, out NettyChannel channel);
@@ -70,22 +69,32 @@ namespace Dubbo.Net.Remoting.Netty
         }
         public override bool HasAttribute(string key)
         {
-            throw new NotImplementedException();
+            return _attributes.ContainsKey(key);
         }
 
         public override object GetAttribute(string key)
         {
-            throw new NotImplementedException();
+             _attributes.TryGetValue(key, out var result);
+            return result;
         }
 
         public override void SetAttribute(string key, object value)
         {
-            throw new NotImplementedException();
+            if (value == null)
+                _attributes.TryRemove(key, out var result);
+            else
+            {
+                _attributes.TryAdd(key, value);
+            }
         }
 
         public override void RmoveAttribute(string key)
         {
-            throw new NotImplementedException();
+            _attributes.TryRemove(key, out var result);
+        }
+        public override string ToString()
+        {
+            return "NettyChannel [channel=" + _channel + "]";
         }
     }
 }

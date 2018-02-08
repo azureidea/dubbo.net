@@ -16,7 +16,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
         }
         public IChannelHandler GetDecoder()
         {
-            return new InternalClientDecoder(_codec);
+            return null;
         }
         public IChannelHandler GetServerEncoder()
         {
@@ -24,7 +24,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
         }
         public IChannelHandler GetServerDecoder()
         {
-            return new InternalServerDecoder(_codec);
+            return  null;
         }
     }
 }

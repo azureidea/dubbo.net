@@ -47,5 +47,23 @@ namespace Dubbo.Net.Common
             }
             return result;
         }
+        public bool HasParameter(String key)
+        {
+            String value = GetParameter<string>(key,"");
+            return !string.IsNullOrEmpty(value);
+        }
+        public int GetPositiveParameter(String key, int defaultValue)
+        {
+            if (defaultValue <= 0)
+            {
+                throw new Exception("defaultValue <= 0");
+            }
+            int value = GetParameter(key, defaultValue);
+            if (value <= 0)
+            {
+                return defaultValue;
+            }
+            return value;
+        }
     }
 }
