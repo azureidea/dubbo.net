@@ -16,10 +16,10 @@ namespace Dubbo.Net.Rpc.Support
             try
             {
                 if (invocation != null && invocation.Invoker != null
-                        && invocation.Invoker.Url != null
+                        && invocation.Invoker.GetUrl() != null
                         && !invocation.MethodName.StartsWith("$"))
                 {
-                    string service = invocation.Invoker.Url.ServiceName;
+                    string service = invocation.Invoker.GetUrl().ServiceName;
                     if (!string.IsNullOrEmpty(service))
                     {
                         Type cls = ReflectUtil.ForName(service);
@@ -44,13 +44,15 @@ namespace Dubbo.Net.Rpc.Support
         {
             try
             {
-                if (invocation?.Invoker?.Url != null && !invocation.MethodName.StartsWith("$"))
+                if (invocation?.ReturnType != null)
+                    return new[] {invocation.ReturnType};
+                if (invocation?.Invoker?.GetUrl() != null && !invocation.MethodName.StartsWith("$"))
                 {
-                    string service = invocation.Invoker.Url.ServiceName;
+                    string service = invocation.Invoker.GetUrl().ServiceName;
                     if (!string.IsNullOrEmpty(service))
                     {
                         Type cls = ReflectUtil.ForName(service);
-                        MethodInfo method = cls.GetMethod(invocation.MethodName, invocation.ParameterTypes);
+                        MethodInfo method = cls.GetMethod(ReflectUtil.GetCSMethodName(invocation.MethodName), invocation.ParameterTypes);
                         if (method.ReturnType == typeof(void))
                         {
                             return null;

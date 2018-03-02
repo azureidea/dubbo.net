@@ -4,8 +4,8 @@ using System.Net;
 using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common;
-using Dubbo.Net.Common.Infrastructure;
 using Dubbo.Net.Common.Serialize;
+using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Remoting.Buffer;
 
 namespace Dubbo.Net.Remoting.Transport
@@ -32,8 +32,8 @@ namespace Dubbo.Net.Remoting.Transport
         protected ISerialization GetSerialization(IChannel channel)
         {
             //todo get serialization from container
-            return null;
-            //return CodecSupport.GetSerialization(channel.GetUrl());
+            //return ObjectFactory.GetInstance<ISerialization>();
+            return CodecSupport.GetSerialization(channel.Url);
         }
 
         protected bool IsClientSide(IChannel channel)

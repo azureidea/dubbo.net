@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using Dubbo.Net.Common;
-using Dubbo.Net.Common.Infrastructure;
 using Dubbo.Net.Common.Serialize;
 using Dubbo.Net.Remoting;
 using Dubbo.Net.Remoting.Exchange.codec;
 using Dubbo.Net.Rpc.Procotol.Dubbo;
+using Dubbo.Net.Rpc.Support;
 
 namespace Dubbo.Net.Rpc.Procotol
 {
@@ -57,13 +57,13 @@ namespace Dubbo.Net.Rpc.Procotol
                             if (channel.Url.GetParameter(Constants.DecodeInIoThreadKey,Constants.DefaultDecodeInIoThread))
                             {
                                 result = new DecodeableRpcResult(channel, res, input,
-                                        (IInvocation)new object(), proto);
+                                    (IInvocation)InvocationUtils.GetInvocation(id), proto);
                                 result.Decode();
                             }
                             else
                             {
                                 result = new DecodeableRpcResult(channel, res,input,
-                                        (IInvocation)new object(), proto);
+                                    (IInvocation)InvocationUtils.GetInvocation(id), proto);
                             }
                             data = result;
                         }
@@ -71,21 +71,21 @@ namespace Dubbo.Net.Rpc.Procotol
                     }
                     catch (Exception t)
                     {
-                        res.Mstatus = (Response.ClientError);
+                        res.Mstatus = Response.ClientError;
                         res.MerrorMsg = t.ToString();
                     }
                 }
                 else
                 {
-                    res.MerrorMsg = (Deserialize(s, input).ReadUTF());
+                    res.MerrorMsg = Deserialize(s, input).ReadUTF();
                 }
                 return res;
             }
 
             // decode request.
             Request req = new Request(id);
-            req.Mversion = ("2.0.0");
-            req.IsTwoWay = ((flag & FlagRequest) != 0);
+            req.Mversion = "2.0.0";
+            req.IsTwoWay = (flag & FlagRequest) != 0;
             if ((flag & FlagEvent) != 0)
             {
                 req.SetEvent(Request.HeartBeatEvent);
@@ -104,17 +104,14 @@ namespace Dubbo.Net.Rpc.Procotol
                 else
                 {
                     DecodeableRpcInvocation inv;
-                    if (channel.Url.GetParameter(
-                        Constants.DecodeInIoThreadKey,
-                        Constants.DefaultDecodeInIoThread))
+                    if (channel.Url.GetParameter(Constants.DecodeInIoThreadKey,Constants.DefaultDecodeInIoThread))
                     {
                         inv = new DecodeableRpcInvocation(channel, req, input, proto);
                         inv.Decode();
                     }
                     else
                     {
-                        inv = new DecodeableRpcInvocation(channel, req,
-                            input, proto);
+                        inv = new DecodeableRpcInvocation(channel, req,input, proto);
                     }
                     data = inv;
                 }

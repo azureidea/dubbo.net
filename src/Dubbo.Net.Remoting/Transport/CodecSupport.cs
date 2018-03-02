@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using Dubbo.Net.Common;
-using Dubbo.Net.Common.Infrastructure;
 using Dubbo.Net.Common.Serialize;
+using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Remoting.Transport
 {
@@ -20,9 +20,10 @@ namespace Dubbo.Net.Remoting.Transport
 
         public static ISerialization GetSerializationById(byte id)
         {
-            if (!IdSerializationMap.ContainsKey(id))
-                return null;
-            return IdSerializationMap[id];
+            return ObjectFactory.GetInstance<ISerialization>(id);
+            //if (!IdSerializationMap.ContainsKey(id))
+            //    return null;
+            //return IdSerializationMap[id];
         }
 
         public static ISerialization GetSerialization(URL url)

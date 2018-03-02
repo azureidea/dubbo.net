@@ -1,8 +1,13 @@
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.deps.json
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\Dubbo.Net.Common.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\Dubbo.Net.Common.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.csprojResolveAssemblyReference.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.csproj.CoreCompileInputs.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.AssemblyInfoInputs.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.AssemblyInfo.cs
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\System.Configuration.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\System.Security.dll

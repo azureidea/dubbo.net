@@ -1,5 +1,4 @@
 ﻿using System;
-using Dubbo.Net.Common.Infrastructure;
 
 namespace Dubbo.Net.Common.Serialize
 {

@@ -9,6 +9,7 @@ namespace Dubbo.Net.Rpc
         string MethodName { get; set; }
         Type[] ParameterTypes { get; set; }
         object[] Arguments { get; set; }
+        Type ReturnType { get; set; }
         Dictionary<string,string> Attachments { get; set; }
         string GetAttachment(string key, string defaultValue = "");
         IInvoker Invoker { get; set; }

@@ -14,6 +14,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj" />
     <ProjectReference Include="..\Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Rpc\Dubbo.Net.Rpc.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.1" />
   </ItemGroup>
 
 </Project>

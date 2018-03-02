@@ -1,4 +1,4 @@
-﻿using Dubbo.Net.Common.Infrastructure;
+﻿
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -65,12 +65,12 @@ namespace Dubbo.Net.Common.Serialize.Supports.Json
 
         public T ReadObject<T>(Type type)
         {
-            throw new NotImplementedException();
+            return (T)JsonConvert.DeserializeObject(ReadLine(), type);
         }
 
         public object ReadObject(Type type)
         {
-            throw new NotImplementedException();
+            return JsonConvert.DeserializeObject(ReadLine(), type);
         }
 
         public short ReadShort()

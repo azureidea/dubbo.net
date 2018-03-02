@@ -5,7 +5,6 @@ using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common.Buffer;
 using Dubbo.Net.Common.Serialize;
-using Dubbo.Net.Common.Infrastructure;
 
 namespace Dubbo.Net.Remoting.Transport
 {

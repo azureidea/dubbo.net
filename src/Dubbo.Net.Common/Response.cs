@@ -8,12 +8,12 @@ namespace Dubbo.Net.Common
     {
         public const string HeartbeatEvent = null;
 
-    public const string ReadonlyEvent = "R";
+        public const string ReadonlyEvent = "R";
 
-    /**
-     * ok.
-     */
-    public const byte Ok = 20;
+        /**
+         * ok.
+         */
+        public const byte Ok = 20;
 
         /**
          * clien side timeout.
@@ -71,7 +71,7 @@ namespace Dubbo.Net.Common
         {
             Mid = id;
         }
-        public Response(long id,string version)
+        public Response(long id, string version)
         {
             Mid = id;
             Mversion = version;

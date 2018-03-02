@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using Dubbo.Net.Remoting;
 using Dubbo.Net.Common;
-using Dubbo.Net.Common.Infrastructure;
 using Dubbo.Net.Common.Serialize;
 using Dubbo.Net.Remoting.Transport;
 using Dubbo.Net.Rpc.Support;

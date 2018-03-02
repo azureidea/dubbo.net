@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using Dubbo.Net.Common;
 
 namespace Dubbo.Net.Rpc
 {
@@ -18,9 +20,23 @@ namespace Dubbo.Net.Rpc
         /// </summary>
         public object[] Arguments { get; set; }
 
+        public Type ReturnType { get; set; }
+
         public Dictionary<string, string> Attachments { get; set; }
+        public RpcInvocation() { }
 
+        public RpcInvocation(MethodInfo method, object[] arguments):this(ReflectUtil.GetMethodName(method),method.GetParameters().Select(p=>p.ParameterType).ToArray(),arguments)
+        {
+        }
 
+        public RpcInvocation(string methodName, Type[] parameterTypes, object[] arguments, Dictionary<string,string> attachments=null, IInvoker invoker=null)
+        {
+            MethodName = methodName;
+            ParameterTypes = parameterTypes ?? new Type[0];
+            Arguments = arguments ?? new object[0];
+            Attachments = attachments ?? new Dictionary<string, string>();
+            Invoker = invoker;
+        }
 
         public string GetAttachment(string key,string defaultValue = null)
         {
@@ -45,6 +61,20 @@ namespace Dubbo.Net.Rpc
                 Attachments = new Dictionary<string, string>();
             }
             Attachments.Add(key, value);
+        }
+        public void AddAttachmentsIfAbsent(Dictionary<string, string> attachments)
+        {
+            if (attachments == null)
+            {
+                return;
+            }
+            foreach (var entry in attachments)
+            {
+                if (!Attachments.ContainsKey(entry.Key))
+                {
+                    Attachments.Add(entry.Key,entry.Value);
+                }
+            }
         }
         public override string ToString()
         {

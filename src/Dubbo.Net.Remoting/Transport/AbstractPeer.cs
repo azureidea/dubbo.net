@@ -9,7 +9,6 @@ namespace Dubbo.Net.Remoting.Transport
 {
     public abstract class AbstractPeer:IEndpoint,IChannelHandler
     {
-        private bool _closed;
 
         public AbstractPeer(URL url, IChannelHandler handler)
         {
@@ -20,51 +19,51 @@ namespace Dubbo.Net.Remoting.Transport
         public URL Url { get; set; }
         public IChannelHandler ChannelHander { get; set; }
         public EndPoint Address { get; set; }
-        public Task SendAsync(object message)
+        public virtual Task<Response> SendAsync(object message)
         {
             return SendAsync(message, Url.GetParameter(Constants.SentKey, false));
         }
 
-        public abstract Task SendAsync(object message, bool sent);
+        public abstract Task<Response> SendAsync(object message, bool sent);
 
-        public Task CloseAsync()
+        public virtual Task CloseAsync()
         {
-            return Task.Factory.StartNew(() => _closed = true);
+            return Task.Factory.StartNew(() => IsClosed = true);
         }
 
-        public Task CloseAsync(int timeout)
+        public virtual Task CloseAsync(int timeout)
         {
             return CloseAsync();
         }
 
         public bool IsClosed { get; set; }
-        public  async  Task ConnectAsync(IChannel channel)
+        public virtual  async  Task ConnectAsync(IChannel channel)
         {
-            if (_closed)
+            if (IsClosed)
                 return;
             await ChannelHander.ConnectAsync(channel);
         }
 
-        public Task DisconnectAsync(IChannel channel)
+        public virtual Task DisconnectAsync(IChannel channel)
         {
             return ChannelHander.DisconnectAsync(channel);
         }
 
-        public async Task SentAsync(IChannel channel, object message)
+        public virtual async Task SentAsync(IChannel channel, object message)
         {
-            if (_closed)
-                return;
-            await ChannelHander.SentAsync(channel, message);
+            if (IsClosed)
+                throw new Exception("channel closed");
+             await ChannelHander.SentAsync(channel, message);
         }
 
-        public async Task RecivedAsync(IChannel channel, object message)
+        public virtual async Task RecivedAsync(IChannel channel, object message)
         {
-            if (_closed)
+            if (IsClosed)
                 return;
             await ChannelHander.RecivedAsync(channel, message);
         }
 
-        public Task CaughtAsync(IChannel channel, Exception exception)
+        public virtual Task CaughtAsync(IChannel channel, Exception exception)
         {
             return ChannelHander.CaughtAsync(channel,exception);
         }

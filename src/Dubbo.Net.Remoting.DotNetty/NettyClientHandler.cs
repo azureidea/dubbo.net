@@ -62,7 +62,7 @@ namespace Dubbo.Net.Remoting.Netty
 
 
 
-        public override async Task WriteAsync(IChannelHandlerContext ctx, Object msg)
+        public override async Task WriteAsync(IChannelHandlerContext ctx, object msg)
         {
             await base.WriteAsync(ctx, msg);
             NettyChannel channel = NettyChannel.GetOrAddChannel(ctx.Channel, _url, _handler);

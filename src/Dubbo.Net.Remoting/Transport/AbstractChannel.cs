@@ -13,7 +13,7 @@ namespace Dubbo.Net.Remoting.Transport
         {
         }
 
-        public override async Task SendAsync(object message, bool sent)
+        public override async Task<Response> SendAsync(object message, bool sent)
         {
             if (IsClosed)
             {
@@ -21,6 +21,8 @@ namespace Dubbo.Net.Remoting.Transport
                                                   + (message == null ? "" : message.GetType().Name) + ":" + message
                                                   + ", cause: Channel closed. channel: " + Address + " -> " + RemoteAddress);
             }
+
+            return null;
         }
 
 
@@ -29,6 +31,6 @@ namespace Dubbo.Net.Remoting.Transport
         public abstract bool HasAttribute(string key);
         public abstract object GetAttribute(string key);
         public abstract void SetAttribute(string key, object value);
-        public abstract void RmoveAttribute(string key);
+        public abstract void RemoveAttribute(string key);
     }
 }

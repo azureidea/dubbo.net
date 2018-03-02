@@ -275,7 +275,7 @@ namespace Dubbo.Net.Remoting.Telnet
             }
             history = (List<string>)channel.GetAttribute(HistoryListKey);
             index = (int?)channel.GetAttribute(HistoryIndexKey);
-            channel.RmoveAttribute(HistoryIndexKey);
+            channel.RemoveAttribute(HistoryIndexKey);
             if (history != null && history.Count > 0 && index != null && index >= 0 && index < history.Count)
             {
                 var value = history[(int)index];

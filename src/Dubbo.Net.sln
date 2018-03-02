@@ -9,9 +9,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Test", "Dubbo.Net
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Remoting", "Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj", "{796F1497-C3E5-47BC-BA4A-A0D4F87B9BBE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Rpc", "Dubbo.Net.Rpc\Dubbo.Net.Rpc.csproj", "{21494EA9-4891-4CE4-99F7-14B876F8C9AB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Rpc", "Dubbo.Net.Rpc\Dubbo.Net.Rpc.csproj", "{21494EA9-4891-4CE4-99F7-14B876F8C9AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Remoting.DotNetty", "Dubbo.Net.Remoting.DotNetty\Dubbo.Net.Remoting.DotNetty.csproj", "{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Remoting.DotNetty", "Dubbo.Net.Remoting.DotNetty\Dubbo.Net.Remoting.DotNetty.csproj", "{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Proxy", "Dubbo.Net.Proxy\Dubbo.Net.Proxy.csproj", "{EF825A9A-FAEA-40DD-A3DD-9D23E0BB96F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C7B7BD9-19E5-465C-8B4C-3562EFCCFD1A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF825A9A-FAEA-40DD-A3DD-9D23E0BB96F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF825A9A-FAEA-40DD-A3DD-9D23E0BB96F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF825A9A-FAEA-40DD-A3DD-9D23E0BB96F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF825A9A-FAEA-40DD-A3DD-9D23E0BB96F2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

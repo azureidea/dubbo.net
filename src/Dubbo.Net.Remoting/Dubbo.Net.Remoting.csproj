@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.1" />
+  </ItemGroup>
+
 </Project>

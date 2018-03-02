@@ -1,0 +1,15 @@
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Rpc.deps.json
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Rpc.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Rpc.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Common.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Common.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.csprojResolveAssemblyReference.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.csproj.CoreCompileInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.AssemblyInfoInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.AssemblyInfo.cs
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\System.Configuration.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\System.Security.dll

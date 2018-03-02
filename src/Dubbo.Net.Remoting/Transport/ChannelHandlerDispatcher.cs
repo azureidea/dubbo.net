@@ -71,7 +71,7 @@ namespace Dubbo.Net.Remoting.Transport
             {
                 try
                 {
-                   await listener.SentAsync(channel,message);
+                    await listener.SentAsync(channel,message);
                 }
                 catch (Exception ex)
                 {

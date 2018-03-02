@@ -2,34 +2,32 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using Dubbo.Net.Common;
 
 namespace Dubbo.Net.Remoting.Transport
 {
     public class ChannelHandlerAdapter : IChannelHandler
     {
-        public Task ConnectAsync(IChannel channel)
+
+        public virtual async Task ConnectAsync(IChannel channel)
         {
-            throw new NotImplementedException();
         }
 
-        public Task DisconnectAsync(IChannel channel)
+        public virtual async Task DisconnectAsync(IChannel channel)
         {
-            throw new NotImplementedException();
         }
 
-        public Task SentAsync(IChannel channel, object message)
+        public virtual async Task SentAsync(IChannel channel, object message)
         {
-            throw new NotImplementedException();
         }
 
-        public Task RecivedAsync(IChannel channel, object message)
+        public virtual async Task RecivedAsync(IChannel channel, object message)
         {
-            throw new NotImplementedException();
+           
         }
 
-        public Task CaughtAsync(IChannel channel, Exception exception)
+        public virtual async Task CaughtAsync(IChannel channel, Exception exception)
         {
-            throw new NotImplementedException();
         }
     }
 }

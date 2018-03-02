@@ -1,4 +1,5 @@
-﻿using Dubbo.Net.Common.Attributes;
+﻿
+using Dubbo.Net.Common.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Dubbo.Net.Test
 {
-    [JavaName("com.mc.userconnect.api.contract.request.UserSyncNotify")]
+    [Refer("com.mc.userconnect.api.contract.request.UserSyncNotify")]
     public class UserSyncNotify
     {
         public string version { get; set; }

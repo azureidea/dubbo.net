@@ -13,6 +13,6 @@ namespace Dubbo.Net.Remoting
         bool HasAttribute(string key);
         object GetAttribute(string key);
         void SetAttribute(string key, object value);
-        void RmoveAttribute(string key);
+        void RemoveAttribute(string key);
     }
 }

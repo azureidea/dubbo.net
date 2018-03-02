@@ -3,7 +3,9 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
+using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Common
 {
@@ -56,7 +58,38 @@ namespace Dubbo.Net.Common
         public static readonly Type[] EmptyClassArray = new Type[0];
 
         private static readonly ConcurrentDictionary<string, Type> TypeCache = new ConcurrentDictionary<string, Type>();
-        private static readonly ConcurrentDictionary<Type, string> TypNameCache = new ConcurrentDictionary<Type, string>();
+        private static readonly ConcurrentDictionary<string, string> JavaNameCache = new ConcurrentDictionary<string, string>();
+        private static readonly ConcurrentDictionary<string, string> CSNameCache = new ConcurrentDictionary<string, string>();
+
+
+        /// <summary>
+        /// 获取java所需要的方法名
+        /// </summary>
+        /// <param name="method"></param>
+        /// <returns></returns>
+        public static string GetMethodName(MethodInfo method)
+        {
+            var name = method.DeclaringType.FullName + "." + method.Name;
+            if (JavaNameCache.TryGetValue(name, out var value))
+                return value;
+            var attr = method.GetCustomAttributes<ReferAttribute>().FirstOrDefault();
+            var javaName = "";
+            javaName = attr == null ? method.Name : attr.Name;
+            JavaNameCache.TryAdd(name, javaName);
+            CSNameCache.TryAdd(javaName, method.Name);
+            return javaName;
+        }
+        /// <summary>
+        /// 获取C#方法名
+        /// </summary>
+        /// <param name="javaName"></param>
+        /// <returns></returns>
+        public static string GetCSMethodName(string javaName)
+        {
+            if (CSNameCache.TryGetValue(javaName, out var csName))
+                return csName;
+            return "";
+        }
         public static string GetDesc(Type[] cs)
         {
             if (cs.Length == 0)
@@ -81,21 +114,21 @@ namespace Dubbo.Net.Common
             if (c.IsPrimitive)
             {
                 string t = c.Name;
-                if ("void".Equals(t)) ret.Append(JvmVoid);
-                else if ("bool".Equals(t)) ret.Append(JvmBoolean);
-                else if ("byte".Equals(t)) ret.Append(JvmByte);
-                else if ("char".Equals(t)) ret.Append(JvmChar);
-                else if ("double".Equals(t)) ret.Append(JvmDouble);
-                else if ("float".Equals(t)) ret.Append(JvmFloat);
-                else if ("int".Equals(t)) ret.Append(JvmInt);
-                else if ("long".Equals(t)) ret.Append(JvmLong);
-                else if ("short".Equals(t)) ret.Append(JvmShort);
+                if ("void".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmVoid);
+                else if ("bool".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmBoolean);
+                else if ("byte".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmByte);
+                else if ("char".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmChar);
+                else if ("double".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmDouble);
+                else if ("float".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmFloat);
+                else if ("Int32".Equals(t,StringComparison.OrdinalIgnoreCase)) ret.Append(JvmInt);
+                else if ("Int64".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmLong);
+                else if ("short".Equals(t, StringComparison.OrdinalIgnoreCase)) ret.Append(JvmShort);
             }
             else
             {
                 ret.Append('L');
-                var javaAttr = c.GetCustomAttributes(typeof(JavaNameAttribute), false).FirstOrDefault();
-                var name = javaAttr == null ? c.FullName : ((JavaNameAttribute)javaAttr).Name;
+                var javaAttr = c.GetCustomAttributes(typeof(ReferAttribute), false).FirstOrDefault();
+                var name = javaAttr == null ? c.FullName : ((ReferAttribute)javaAttr).Name;
                 ret.Append(name.Replace('.', '/'));
                 ret.Append(';');
             }
@@ -122,8 +155,8 @@ namespace Dubbo.Net.Common
                 else if ("char".Equals(name)) sb.Append(JvmChar);
                 else if ("double".Equals(name)) sb.Append(JvmDouble);
                 else if ("float".Equals(name)) sb.Append(JvmFloat);
-                else if ("int".Equals(name)) sb.Append(JvmInt);
-                else if ("long".Equals(name)) sb.Append(JvmLong);
+                else if ("int32".Equals(name)) sb.Append(JvmInt);
+                else if ("int64".Equals(name)) sb.Append(JvmLong);
                 else if ("short".Equals(name)) sb.Append(JvmShort);
                 else sb.Append('L').Append(name).Append(';'); // "java.lang.Object" ==> "Ljava.lang.Object;"
                 name = sb.ToString();
@@ -150,11 +183,7 @@ namespace Dubbo.Net.Common
             return TypeCache[key];
         }
 
-        public static void RegisteType(string key, Type type)
-        {
-            TypeCache[key] = type;
-            TypNameCache[type] = key;
-        }
+      
 
         public static Type[] Desc2ClassArray(string desc)
         {
@@ -166,3 +195,4 @@ namespace Dubbo.Net.Common
         }
     }
 }
+

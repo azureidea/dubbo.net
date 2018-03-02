@@ -13,7 +13,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
         protected override void Encode(IChannelHandlerContext context, Request message, IByteBuffer output)
         {
             var channel = context.Channel;
-           // _codec.EncodeRequest(channel, output, message);
+            //_codec.Encode(channel, output, message);
         }
     }
     public class InternalServerEncoder : MessageToByteEncoder<Response>

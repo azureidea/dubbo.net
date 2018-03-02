@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Text;
 using Dubbo.Net.Common;
+using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Remoting.Transport
 {
     public abstract class AbstractEndpoint : AbstractPeer, IResetable
     {
-        private static readonly ILogger logger;//todo get logger from container
+        protected  readonly ILogger Logger;//todo get logger from container
 
         protected ICodec Codec { get; set; }
 
@@ -15,8 +16,9 @@ namespace Dubbo.Net.Remoting.Transport
 
         protected int ConnectTimeout { get; set; }
 
-        public AbstractEndpoint(URL url, IChannelHandler handler) : base(url, handler)
+        protected AbstractEndpoint(URL url, IChannelHandler handler) : base(url, handler)
         {
+            Logger = ObjectFactory.GetInstance<ILogger>();
             this.Codec = GetChannelCodec(url);
             this.Timeout = url.GetPositiveParameter(Constants.TimeoutKey, Constants.DefaultTimeout);
             this.ConnectTimeout = url.GetPositiveParameter(Constants.ConnectTimeoutKey, Constants.DefaultConnectTimeout);
@@ -49,7 +51,7 @@ namespace Dubbo.Net.Remoting.Transport
             }
             catch (Exception t)
             {
-                logger.Error( t);
+                Logger.Error( t);
             }
             try
             {
@@ -64,7 +66,7 @@ namespace Dubbo.Net.Remoting.Transport
             }
             catch (Exception t)
             {
-                logger.Error( t);
+                Logger.Error( t);
             }
             try
             {
@@ -75,7 +77,7 @@ namespace Dubbo.Net.Remoting.Transport
             }
             catch (Exception t)
             {
-                logger.Error(t);
+                Logger.Error(t);
             }
         }
 

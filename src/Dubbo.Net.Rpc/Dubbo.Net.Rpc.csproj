@@ -9,4 +9,8 @@
     <ProjectReference Include="..\Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Update="NETStandard.Library" Version="2.0.1" />
+  </ItemGroup>
+
 </Project>

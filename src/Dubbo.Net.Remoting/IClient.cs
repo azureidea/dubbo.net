@@ -2,12 +2,13 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Dubbo.Net.Remoting
 {
-    public interface IClient:IEndpoint,IChannel,IResetable
+    public interface IClient:IChannel,IResetable
     {
-        void Reconnect();
-
+        Task ReconnectAsync();
+        
     }
 }

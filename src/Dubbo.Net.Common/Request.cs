@@ -9,7 +9,7 @@ namespace Dubbo.Net.Common
     {
         public const string HeartBeatEvent = null;
         public const string ReadonlyEvent = "R";
-        private long _invokeId = 0;
+        private static long _invokeId = 0;
 
         public long Mid { get; set; }
         public string Mversion { get; set; }

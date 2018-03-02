@@ -9,13 +9,13 @@ namespace Dubbo.Net.Remoting
 {
     public interface IEndpoint
     {
-        URL Url { get; set; }
-        IChannelHandler ChannelHander { get; set; }
-        EndPoint Address { get; set; }
-        Task SendAsync(object message);
-        Task SendAsync(object message, bool sent);
+        URL Url { get; }
+        IChannelHandler ChannelHander { get; }
+        EndPoint Address { get; }
+        Task<Response> SendAsync(object message);
+        Task<Response> SendAsync(object message, bool sent);
         Task CloseAsync();
         Task CloseAsync(int timeout);
-        bool IsClosed { get; set; }
+        bool IsClosed { get;  }
     }
 }

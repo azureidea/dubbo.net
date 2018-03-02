@@ -6,7 +6,6 @@ using DotNetty.Buffers;
 using Dubbo.Net.Common;
 using Dubbo.Net.Remoting.Telnet;
 using Dubbo.Net.Common.Buffer;
-using Dubbo.Net.Common.Infrastructure;
 using Dubbo.Net.Common.Serialize;
 
 namespace Dubbo.Net.Remoting.Exchange.codec
