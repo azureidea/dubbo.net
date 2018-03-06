@@ -104,7 +104,6 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\DotNetty.Common.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\DotNetty.Handlers.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\DotNetty.Transport.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Common.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Proxy.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Remoting.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Remoting.Netty.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Rpc.dll
@@ -124,7 +123,6 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\System.Reflection.Metada
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\System.Text.Encoding.CodePages.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Common.pdb
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Proxy.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Remoting.Netty.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Remoting.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Rpc.pdb
@@ -151,3 +149,8 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\obj\Debug\Dubbo.Net.Test.csproj.Du
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\obj\Debug\Dubbo.Net.Test.csproj.CoreCompileInputs.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\obj\Debug\Dubbo.Net.Test.exe
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\obj\Debug\Dubbo.Net.Test.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Applications.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Config.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Applications.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Dubbo.Net.Config.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Test\bin\Debug\Consul.dll

@@ -1,11 +1,8 @@
 ﻿using System;
 using System.CodeDom.Compiler;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Reflection.Emit;
 using System.Text;
-using System.Threading.Tasks;
 using Dubbo.Net.Common.Utils;
 using Microsoft.CSharp;
 
@@ -127,16 +124,5 @@ namespace Dubbo.Net.Test
             return assembly.GetType("Dubbo.Net.ClientProxys." + className);
         }
 
-        private static string propertyString(string propertyName)
-        {
-            StringBuilder sbProperty = new StringBuilder();
-            sbProperty.Append(" private   int   _" + propertyName + "   =   0;\n");
-            sbProperty.Append(" public   int   " + "" + propertyName + "\n");
-            sbProperty.Append(" {\n");
-            sbProperty.Append(" get{   return   _" + propertyName + ";}   \n");
-            sbProperty.Append(" set{   _" + propertyName + "   =   value;   }\n");
-            sbProperty.Append(" }");
-            return sbProperty.ToString();
-        }
     }
 }

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Consul" Version="0.7.2.4" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj" />
     <ProjectReference Include="..\Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj" />
   </ItemGroup>

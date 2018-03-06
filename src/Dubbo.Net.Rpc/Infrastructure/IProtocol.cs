@@ -8,7 +8,8 @@ namespace Dubbo.Net.Rpc.Infrastructure
         int GetDefaultPort();
         IExporter Export(IInvoker invoker);
         IInvoker Refer(URL url);
-        List<IInvoker> Invokers { get; }
+        List<IInvoker> Invokers(string serviceName);
         void Destroy();
+        
     }
 }

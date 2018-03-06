@@ -3,7 +3,6 @@ using System.Collections.Concurrent;
 using System.Net;
 using System.Threading.Tasks;
 using Dubbo.Net.Common;
-using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Remoting.Transport;
 
 namespace Dubbo.Net.Remoting.Netty

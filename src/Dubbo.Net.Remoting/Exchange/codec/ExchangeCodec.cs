@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common;
 using Dubbo.Net.Remoting.Telnet;
@@ -56,9 +54,9 @@ namespace Dubbo.Net.Remoting.Exchange.codec
 
         protected override object Decode(IChannel channel, IByteBuffer buffer, int readable, byte[] header)
         {
+            //Console.WriteLine("decode step1:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             // check magic number.
-            if (readable > 0 && header[0] != MagicHigh
-                    || readable > 1 && header[1] != MagicLow)
+            if (readable > 0 && header[0] != MagicHigh|| readable > 1 && header[1] != MagicLow)
             {
                 int length = header.Length;
                 if (header.Length < readable)
@@ -86,7 +84,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
             // get data length.
             int len = ByteUtil.Bytes2Int(header, 12);
             CheckPayload(channel, len);
-
+            //Console.WriteLine("decode step2:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             int tt = len + HeaderLength;
             if (readable < tt)
             {
@@ -98,6 +96,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
 
             try
             {
+                //Console.WriteLine("decode step3:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 return DecodeBody(channel, input, header);
             }
             finally
@@ -207,7 +206,9 @@ namespace Dubbo.Net.Remoting.Exchange.codec
 
         protected void EncodeRequest(IChannel channel, IByteBuffer buffer, Request req)
         {
+            //Console.WriteLine("begin encode Request:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             ISerialization serialization = GetSerialization(channel);
+           // Console.WriteLine("get serialization:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             // header.
             byte[] header = new byte[HeaderLength];
             // set magic number.
@@ -227,6 +228,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
             buffer.SetWriterIndex(savedWriteIndex + HeaderLength);
             ChannelBufferStream bos = new ChannelBufferStream(buffer);
             IObjectOutput output = serialization.Serialize(bos);
+            //Console.WriteLine("encode header:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             if (req.IsEvent)
             {
                 EncodeEventData(channel, output, req.Mdata);
@@ -235,6 +237,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
             {
                 EncodeRequestData(channel, output, req.Mdata);
             }
+            //Console.WriteLine("encode requestdata down:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             output.FlushBuffer();
             bos.Flush();
             bos.Close();
@@ -246,6 +249,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
             buffer.SetWriterIndex(savedWriteIndex);
             buffer.WriteBytes(header); // write header.
             buffer.SetWriterIndex(savedWriteIndex + HeaderLength + len);
+           // Console.WriteLine("encode end:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
 
         protected void EncodeResponse(IChannel channel, IByteBuffer buffer, Response res)

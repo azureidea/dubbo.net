@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace Dubbo.Net.Rpc
 {
@@ -8,7 +7,7 @@ namespace Dubbo.Net.Rpc
     {
         object Value { get; set; }
         Exception Exception { get; set; }
-        bool HasException { get; set; }
+        bool HasException { get;  }
         object Recreate();
         Dictionary<string, string> Attachments { get; set; }
         string GetAttachment(string key, string defaultValue="");

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using Dubbo.Net.Common;
 using Dubbo.Net.Common.Serialize;
 using Dubbo.Net.Remoting;
@@ -23,8 +21,10 @@ namespace Dubbo.Net.Rpc.Procotol
 
         protected override object DecodeBody(IChannel channel, MemoryStream input, byte[] header)
         {
+            //Console.WriteLine("decode step4:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             byte flag = header[2], proto = (byte)(flag & SerializationMask);
             ISerialization s = GetSerialization(channel);
+            //Console.WriteLine("decode step5:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             // get request id.
             var id = ByteUtil.Bytes2Long(header, 4);
             if ((flag & FlagRequest) == 0)
@@ -56,9 +56,12 @@ namespace Dubbo.Net.Rpc.Procotol
                             DecodeableRpcResult result;
                             if (channel.Url.GetParameter(Constants.DecodeInIoThreadKey,Constants.DefaultDecodeInIoThread))
                             {
+                                //Console.WriteLine("decode step6:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                                 result = new DecodeableRpcResult(channel, res, input,
                                     (IInvocation)InvocationUtils.GetInvocation(id), proto);
+                               // Console.WriteLine("decode step7:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                                 result.Decode();
+                                //Console.WriteLine("decode step8:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                             }
                             else
                             {
@@ -149,9 +152,10 @@ namespace Dubbo.Net.Rpc.Procotol
             output.WriteUTF(inv.GetAttachment(Constants.DubboVersionKey, DubboVersion));
             output.WriteUTF(inv.GetAttachment(Constants.PathKey));
             output.WriteUTF(inv.GetAttachment(Constants.VersionKey));
-
+            //Console.WriteLine("encode attachment:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             output.WriteUTF(inv.MethodName);
             output.WriteUTF(ReflectUtil.GetDesc(inv.ParameterTypes));
+            //Console.WriteLine("encode method and paramtype:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             object[]
             args = inv.Arguments;
             if (args != null)
@@ -161,7 +165,9 @@ namespace Dubbo.Net.Rpc.Procotol
                     output.WriteObject(arg);
                 }
             }
+            //Console.WriteLine("encode args:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             output.WriteObject(inv.Attachments);
+            //Console.WriteLine("encode all attachments:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
         }
 
         protected override void EncodeResponseData(IChannel channel, IObjectOutput output, object data)

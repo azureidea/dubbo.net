@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Net;
-using System.Text;
 using DotNetty.Buffers;
-using Dubbo.Net.Common;
 using Dubbo.Net.Common.Serialize;
-using Dubbo.Net.Common.Utils;
-using Dubbo.Net.Remoting.Buffer;
 
 namespace Dubbo.Net.Remoting.Transport
 {
@@ -33,6 +27,7 @@ namespace Dubbo.Net.Remoting.Transport
         {
             //todo get serialization from container
             //return ObjectFactory.GetInstance<ISerialization>();
+            //Console.WriteLine("begin get serialization1:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             return CodecSupport.GetSerialization(channel.Url);
         }
 

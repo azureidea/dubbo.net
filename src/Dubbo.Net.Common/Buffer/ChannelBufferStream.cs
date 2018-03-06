@@ -1,8 +1,6 @@
 ﻿using DotNetty.Buffers;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Dubbo.Net.Common.Buffer
 {

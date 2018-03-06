@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
-using System.Text;
 using System.Threading;
 using Dubbo.Net.Common;
 
@@ -52,7 +50,7 @@ namespace Dubbo.Net.Rpc.Support
                     if (!string.IsNullOrEmpty(service))
                     {
                         Type cls = ReflectUtil.ForName(service);
-                        MethodInfo method = cls.GetMethod(ReflectUtil.GetCSMethodName(invocation.MethodName), invocation.ParameterTypes);
+                        MethodInfo method = cls.GetMethod(ReflectUtil.GetCsMethodName(invocation.MethodName), invocation.ParameterTypes);
                         if (method.ReturnType == typeof(void))
                         {
                             return null;

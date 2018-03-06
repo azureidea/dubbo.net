@@ -1,5 +1,4 @@
-﻿using Dubbo.Net.Common.Attributes;
-using System;
+﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,9 +56,10 @@ namespace Dubbo.Net.Common
         public const char JvmShort = 'S';
         public static readonly Type[] EmptyClassArray = new Type[0];
 
-        private static readonly ConcurrentDictionary<string, Type> TypeCache = new ConcurrentDictionary<string, Type>();
+        private static readonly ConcurrentDictionary<string, Type> DescType = new ConcurrentDictionary<string, Type>();
+        private static readonly ConcurrentDictionary<Type,string> TypeDesc=new ConcurrentDictionary<Type, string>();
         private static readonly ConcurrentDictionary<string, string> JavaNameCache = new ConcurrentDictionary<string, string>();
-        private static readonly ConcurrentDictionary<string, string> CSNameCache = new ConcurrentDictionary<string, string>();
+        private static readonly ConcurrentDictionary<string, string> CsNameCache = new ConcurrentDictionary<string, string>();
 
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace Dubbo.Net.Common
             var javaName = "";
             javaName = attr == null ? method.Name : attr.Name;
             JavaNameCache.TryAdd(name, javaName);
-            CSNameCache.TryAdd(javaName, method.Name);
+            CsNameCache.TryAdd(javaName, method.Name);
             return javaName;
         }
         /// <summary>
@@ -84,11 +84,28 @@ namespace Dubbo.Net.Common
         /// </summary>
         /// <param name="javaName"></param>
         /// <returns></returns>
-        public static string GetCSMethodName(string javaName)
+        public static string GetCsMethodName(string javaName)
         {
-            if (CSNameCache.TryGetValue(javaName, out var csName))
+            if (CsNameCache.TryGetValue(javaName, out var csName))
                 return csName;
             return "";
+        }
+        /// <summary>
+        /// 获取java所需要的方法名
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        public static string GetJavaTypeName(Type type)
+        {
+            var name = type.FullName ;
+            if (JavaNameCache.TryGetValue(name, out var value))
+                return value;
+            var attr = type.GetCustomAttributes<ReferAttribute>().FirstOrDefault();
+            var javaName = "";
+            javaName = attr == null ? type.Name : attr.Name;
+            JavaNameCache.TryAdd(name, javaName);
+            CsNameCache.TryAdd(javaName, type.Name);
+            return javaName;
         }
         public static string GetDesc(Type[] cs)
         {
@@ -103,6 +120,8 @@ namespace Dubbo.Net.Common
         }
         public static string GetDesc(Type c)
         {
+            if (TypeDesc.TryGetValue(c, out var value))
+                return value;
             StringBuilder ret = new StringBuilder();
 
             while (c.IsArray)
@@ -132,11 +151,15 @@ namespace Dubbo.Net.Common
                 ret.Append(name.Replace('.', '/'));
                 ret.Append(';');
             }
-            return ret.ToString();
+            value= ret.ToString();
+            TypeDesc.TryAdd(c, value);
+            return value;
         }
 
         public static Type ForName(string name)
         {
+            if (DescType.TryGetValue(name, out Type type))
+                return type;
             int c = 0, index = name.IndexOf('[');
             if (index > 0)
             {
@@ -155,33 +178,31 @@ namespace Dubbo.Net.Common
                 else if ("char".Equals(name)) sb.Append(JvmChar);
                 else if ("double".Equals(name)) sb.Append(JvmDouble);
                 else if ("float".Equals(name)) sb.Append(JvmFloat);
-                else if ("int32".Equals(name)) sb.Append(JvmInt);
-                else if ("int64".Equals(name)) sb.Append(JvmLong);
+                else if ("int".Equals(name)) sb.Append(JvmInt);
+                else if ("long".Equals(name)) sb.Append(JvmLong);
                 else if ("short".Equals(name)) sb.Append(JvmShort);
                 else sb.Append('L').Append(name).Append(';'); // "java.lang.Object" ==> "Ljava.lang.Object;"
                 name = sb.ToString();
             }
             else
             {
-                if ("void".Equals(name)) return typeof(void);
-                else if ("boolean".Equals(name)) return typeof(bool);
-                else if ("byte".Equals(name)) return typeof(byte);
-                else if ("char".Equals(name)) return typeof(char);
-                else if ("double".Equals(name)) return typeof(double);
-                else if ("float".Equals(name)) return typeof(float);
-                else if ("int".Equals(name)) return typeof(int);
-                else if ("long".Equals(name)) return typeof(long);
-                else if ("short".Equals(name)) return typeof(short);
+                if ("void".Equals(name)) type= typeof(void);
+                else if ("boolean".Equals(name)) type = typeof(bool);
+                else if ("byte".Equals(name)) type = typeof(byte);
+                else if ("char".Equals(name)) type = typeof(char);
+                else if ("double".Equals(name)) type = typeof(double);
+                else if ("float".Equals(name)) type = typeof(float);
+                else if ("int32".Equals(name)) type = typeof(int);
+                else if ("int64".Equals(name)) type = typeof(long);
+                else if ("short".Equals(name)) type = typeof(short);
             }
 
+            DescType.TryAdd(name, type);
 
-            return GetTypeFromCache(name);
+            return type;
         }
 
-        private static Type GetTypeFromCache(string key)
-        {
-            return TypeCache[key];
-        }
+       
 
       
 

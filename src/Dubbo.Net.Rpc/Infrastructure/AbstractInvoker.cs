@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using Dubbo.Net.Common;
 using Dubbo.Net.Common.Utils;
@@ -69,6 +67,9 @@ namespace Dubbo.Net.Rpc.Infrastructure
         {
             return _destroyed;
         }
+
+        public string InvokerId { get; set; }
+
         public Type GetInterface()
         {
             return _type;
@@ -99,7 +100,7 @@ namespace Dubbo.Net.Rpc.Infrastructure
                 invocation.SetAttachment(Constants.AsyncKey, "true");
             }
             RpcUtils.AttachInvocationIdIfAsync(GetUrl(), invocation);
-
+            //Console.WriteLine("step4:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
 
             try
             {

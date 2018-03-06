@@ -1,8 +1,6 @@
 ﻿using Dubbo.Net.Common;
 using Dubbo.Net.Remoting.Transport;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Dubbo.Net.Remoting
 {

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -18,10 +19,12 @@ namespace Dubbo.Net.Common.Utils
         /// 类型缓存
         /// </summary>
         private static Dictionary<Type, Type> _typeMap = new Dictionary<Type, Type>();
+
         /// <summary>
         /// 带Key的类型缓存
         /// </summary>
-        static List<TypeRegisterInfo> _keyMap=new List<TypeRegisterInfo>(); 
+        private static ConcurrentDictionary<Type, ConcurrentDictionary<string, Type>> _keyMap =
+            new ConcurrentDictionary<Type, ConcurrentDictionary<string, Type>>();
         /// <summary>
         /// 注册接口实现类型
         /// </summary>
@@ -110,24 +113,30 @@ namespace Dubbo.Net.Common.Utils
                 Register(interfaceType, impType);
                 return;
             }
-            Type iType = interfaceType;
-            Type impl = impType;
             if (interfaceType == null || impType == null)
                 throw new ArgumentNullException();
             if (!interfaceType.IsAssignableFrom(impType))
                 throw new ArgumentException("interfaceType type is not assignable from impType");
             var keyStr = key.ToString();
-            if (!_keyMap.Any(c => c.Key == keyStr&&c.InterfaceType==interfaceType))
+            if (!_keyMap.TryGetValue(interfaceType, out var value))
             {
-                lock (_keyMap)
-                {
-                    if (!_keyMap.Any(c => c.Key == keyStr && c.InterfaceType == interfaceType))
-                    {
-                        var info = new TypeRegisterInfo { InstanceType = impl, Key = keyStr,InterfaceType = iType};
-                        _keyMap.Add(info);
-                    }
-                }
+                value=new ConcurrentDictionary<string, Type>();
+                _keyMap.TryAdd(interfaceType, value);
             }
+            if(value.ContainsKey(keyStr))
+                return;
+            value.TryAdd(keyStr, impType);
+            //if (!_keyMap.Any(c => c.Key == keyStr&&c.InterfaceType==interfaceType))
+            //{
+            //    lock (_keyMap)
+            //    {
+            //        if (!_keyMap.Any(c => c.Key == keyStr && c.InterfaceType == interfaceType))
+            //        {
+            //            var info = new TypeRegisterInfo { InstanceType = impl, Key = keyStr,InterfaceType = iType};
+            //            _keyMap.Add(info);
+            //        }
+            //    }
+            //}
         }
         public static T GetInstance<T>()
         {
@@ -203,7 +212,10 @@ namespace Dubbo.Net.Common.Utils
 
         public static List<string> GetTypeKeys<T>()
         {
-            return _keyMap.Where(c => c.InterfaceType == typeof(T)).Select(c => c.Key.ToString()).ToList();
+            var type = typeof(T);
+            if(!_keyMap.TryGetValue(type,out var dic))
+                return new List<string>();
+            return dic.Keys.ToList();
         }
         private static Type GetInstanceType(Type type)
         {
@@ -229,7 +241,11 @@ namespace Dubbo.Net.Common.Utils
             if (type.IsInterface)
             {
                 var keyStr = key.ToString();
-                return _keyMap.FirstOrDefault(c => c.Key == keyStr && c.InterfaceType == type)?.InstanceType;
+                if (!_keyMap.TryGetValue(type, out var dic))
+                    return null;
+                if (dic.TryGetValue(keyStr, out var value))
+                    return value;
+                return null;
             }
             else
             {

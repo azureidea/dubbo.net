@@ -3,8 +3,6 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Reflection;
-using System.Text;
 using System.Threading.Tasks;
 using Dubbo.Net.Common;
 using Dubbo.Net.Common.Serialize.Supports;
@@ -17,7 +15,7 @@ using Dubbo.Net.Rpc.Procotol.Dubbo;
 
 namespace Dubbo.Net.Rpc.Procotol
 {
-    [DependencyIoc(typeof(IProtocol),"dubbo")]
+    [DependencyIoc(typeof(IProtocol), "dubbo")]
     public class DubboProtocol : AbstractProtocol
     {
         private const int DefaultPort = 20880;
@@ -32,7 +30,9 @@ namespace Dubbo.Net.Rpc.Procotol
         private readonly ILogger _logger = ObjectFactory.GetInstance<ILogger>();
 
         private readonly ConcurrentDictionary<string, string> _stubServiceMethods = new ConcurrentDictionary<string, string>();
-        private IExchangeHandler _requestHandler=null;
+
+        
+        private IExchangeHandler _requestHandler = null;
 
         private IExchangeHandler RequestHandler()
         {
@@ -160,9 +160,27 @@ namespace Dubbo.Net.Rpc.Procotol
         public override IInvoker Refer(URL url)
         {
             OptimizeSerialization(url);
-            var type =TypeMatch.MatchType(url.ServiceName);
-            var invoker = new DubboInvoker(type, url,GetClients(url), Invokers);
-            Invokers.Add(invoker);
+            var id = url.GetId();
+            var name = url.ServiceName;
+            IInvoker invoker = null;
+            lock (_invokers)
+            {
+                if (_invokers.TryGetValue(name, out var list))
+                {
+                    invoker = list.FirstOrDefault(c => c.InvokerId == id);
+                    if (invoker != null)
+                        return invoker;
+                }
+                else
+                {
+                    list = new List<IInvoker>();
+                    _invokers.TryAdd(name, list);
+                }
+                var type = TypeMatch.MatchType(name);
+                invoker = new DubboInvoker(type, url, GetClients(url), null);
+                invoker.InvokerId = id;
+                list.Add(invoker);
+            }
             return invoker;
         }
 
@@ -261,7 +279,7 @@ namespace Dubbo.Net.Rpc.Procotol
             ReferenceCountExchangeClient client;
             if (_referenceClients.ContainsKey(key))
             {
-                 client = _referenceClients[key];
+                client = _referenceClients[key];
                 if (!client.IsClosed)
                 {
                     client.IncreamentAndGetCount();
@@ -269,14 +287,15 @@ namespace Dubbo.Net.Rpc.Procotol
                 }
                 else
                 {
-                    _referenceClients.TryRemove(key,out var c);
+                    _referenceClients.TryRemove(key, out var c);
                 }
             }
-            lock(_lockObj){
+            lock (_lockObj)
+            {
                 var exchangeClient = InitClient(url);
                 client = new ReferenceCountExchangeClient(exchangeClient, _ghostClients);
                 _referenceClients.TryAdd(key, client);
-                _ghostClients.TryRemove(key,out var g);
+                _ghostClients.TryRemove(key, out var g);
                 return client;
             }
         }
@@ -286,7 +305,7 @@ namespace Dubbo.Net.Rpc.Procotol
             // client type setting.
             var str = url.GetParameter(Constants.ClientKey, url.GetParameter(Constants.ServerKey, Constants.DefaultRemotingClient));
 
-            var version = url.GetParameter(Constants.DubboVersionKey,"2.6.0");
+            var version = url.GetParameter(Constants.DubboVersionKey, "2.6.0");
             var compatible = (version != null && version.StartsWith("1.0."));
             url = url.AddParameter(Constants.CodecKey, DubboCodec.Name);
             // enable heartbeat by default
@@ -294,20 +313,27 @@ namespace Dubbo.Net.Rpc.Procotol
 
             // BIO is not allowed since it has severe performance issue.
             var transporter = ObjectFactory.GetInstance<ITransporter>(str);
-            if (transporter==null) {
+            if (transporter == null)
+            {
                 throw new Exception("Unsupported client type: " + str + "," +
-                                       " supported client type is " + ObjectFactory.GetTypeKeys<ITransporter>()+ " ");
+                                       " supported client type is " + ObjectFactory.GetTypeKeys<ITransporter>() + " ");
             }
 
             IExchangeClient client;
-            try {
+            try
+            {
                 // connection should be lazy
-                if (url.GetParameter(Constants.LazyConnectKey, false)) {
+                if (url.GetParameter(Constants.LazyConnectKey, false))
+                {
                     client = new LazyConnectExchangeClient(url, RequestHandler());
-                } else {
+                }
+                else
+                {
                     client = Exchangers.ConnectAsync(url, RequestHandler()).Result;
                 }
-            } catch (RemotingException e) {
+            }
+            catch (RemotingException e)
+            {
                 throw new Exception("Fail to create remoting client for service(" + url + "): " + e.Message, e);
             }
             return client;

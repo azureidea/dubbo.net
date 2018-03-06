@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dubbo.Net.Remoting
+﻿namespace Dubbo.Net.Remoting
 {
     public class TimeoutException:RemotingException
     {

@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using DotNetty.Transport.Channels;
 using Dubbo.Net.Common;
-using Dubbo.Net.Remoting.Netty;
 
 namespace Dubbo.Net.Remoting.Netty
 {
@@ -52,7 +49,9 @@ namespace Dubbo.Net.Remoting.Netty
             NettyChannel channel = NettyChannel.GetOrAddChannel(ctx.Channel, _url, _handler);
             try
             {
+                //Console.WriteLine("channel read:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 _handler.RecivedAsync(channel, msg).Wait();
+               // Console.WriteLine("channel read completed:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             }
             finally
             {

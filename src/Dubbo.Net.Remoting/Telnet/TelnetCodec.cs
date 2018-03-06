@@ -4,7 +4,6 @@ using System.IO;
 using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common;
-using Dubbo.Net.Remoting.Buffer;
 using Dubbo.Net.Remoting.Transport;
 
 namespace Dubbo.Net.Remoting.Telnet

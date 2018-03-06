@@ -1,6 +1,7 @@
 ﻿using Dubbo.Net.Common;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
@@ -29,7 +30,7 @@ namespace Dubbo.Net.Remoting.Transport
         protected AbstractClient(URL url, IChannelHandler handler) : base(url, handler)
         {
 
-            _sendReconnect = url.GetParameter(Constants.SendReconnectKey, false);
+            _sendReconnect = url.GetParameter(Constants.SendReconnectKey, true);
 
             _shutdownTimeout = url.GetParameter(Constants.ShutdownTimeoutKey, Constants.DefaultShutdownTimeout);
 
@@ -90,7 +91,7 @@ namespace Dubbo.Net.Remoting.Transport
 
         public EndPoint RemoteAddress { get; private set; }
 
-        public bool IsConnected { get; private set; }
+        public virtual bool IsConnected { get; private set; }
 
         public bool HasAttribute(string key)
         {
@@ -102,10 +103,12 @@ namespace Dubbo.Net.Remoting.Transport
 
         public override async Task<Response> SendAsync(object message, bool sent)
         {
+            //Console.WriteLine("step6:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             if (_sendReconnect && !IsConnected)
             {
                 await ConnectAsync();
             }
+            //Console.WriteLine("step7:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             IChannel channel = GetChannel();
             //TODO Can the value returned by getChannel() be null? need improvement.
             if (channel == null || !channel.IsConnected)
@@ -115,10 +118,13 @@ namespace Dubbo.Net.Remoting.Transport
 
             var id = (message as Request )?.Mid ?? 0;
             InvocationUtils.SetInvocation(id, (message as Request)?.Mdata);
+            //Console.WriteLine("step8:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             var task = RegisterResultCallbackAsync(id);//todo user msg.id
             try
             {
+                //Console.WriteLine("step9:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 await channel.SendAsync(message, sent);
+               // Console.WriteLine("step10:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 return await task;
             }
             catch (Exception e)
@@ -130,17 +136,34 @@ namespace Dubbo.Net.Remoting.Transport
 
         public override  Task RecivedAsync(IChannel channel, object message)
         {
-            var msg = message as Response;
-            var id = msg?.Mid ?? 0;
-            if (!_resultDictionary.TryGetValue(id, out var task))
+            //Console.WriteLine("step11:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            if (message is List<object> list)
             {
-                return Task.CompletedTask;
+                foreach (var o in list)
+                {
+                    var msg = o as Response;
+                    DoRecive(msg);
+                }
+            }
+            else if(message is Response msg)
+            {
+                DoRecive(msg);
             }
             //todo other options
-            task.SetResult(msg);
             return Task.CompletedTask;
         }
 
+        private void DoRecive(Response msg)
+        {
+            var id = msg?.Mid ?? 0;
+            //if (_logger.DebugEnabled)
+            //    _logger.Debug($"获取到id为：{id}的响应内容。");
+            if (_resultDictionary.TryGetValue(id, out var task))
+            {
+                task.SetResult(msg);
+                //return Task.CompletedTask;
+            }
+        }
         /// <summary>
         /// 注册指定消息的回调任务。
         /// </summary>
@@ -148,8 +171,8 @@ namespace Dubbo.Net.Remoting.Transport
         /// <returns>远程调用结果消息模型。</returns>
         private async Task<Response> RegisterResultCallbackAsync(long id)
         {
-            if (_logger.DebugEnabled)
-                _logger.Debug($"准备获取Id为：{id}的响应内容。");
+            //if (_logger.DebugEnabled)
+            //    _logger.Debug($"准备获取Id为：{id}的响应内容。");
 
             var task = new TaskCompletionSource<Response>();
             _resultDictionary.TryAdd(id, task);

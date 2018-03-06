@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
@@ -37,7 +36,9 @@ namespace Dubbo.Net.Remoting.Netty
                     saveReaderIndex = input.ReaderIndex;
                     try
                     {
+                        //Console.WriteLine("decode:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                         msg = _codec.Decode(channel, input);
+                        //Console.WriteLine("decoded:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                     }
                     catch (IOException e)
                     {

@@ -23,7 +23,7 @@ namespace Dubbo.Net.Proxy
 
         protected ServiceProxyBase(URL url)
         {
-            var protocolName = url.GetParameter("protocol", "dubbo");
+            var protocolName = url.Protocol;
             _protocol = ObjectFactory.GetInstance<IProtocol>(protocolName);
             _protocol.Refer(url);
         }

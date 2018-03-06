@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
-using DotNetty.Buffers;
-using DotNetty.Codecs;
 using DotNetty.Transport.Bootstrapping;
 using DotNetty.Transport.Channels;
 using DotNetty.Transport.Channels.Sockets;
@@ -13,18 +9,29 @@ using Dubbo.Net.Rpc.Procotol.Dubbo;
 
 namespace Dubbo.Net.Remoting.Netty
 {
-    public class NettyClient:AbstractClient
+    public class NettyClient : AbstractClient
     {
 
         private Bootstrap _bootstrap;
-        private DotNetty.Transport.Channels.IChannel _channel; 
-        public NettyClient(URL url, IChannelHandler handler) : base(url, WrapChannelHandler(url,handler))
+        private DotNetty.Transport.Channels.IChannel _channel;
+
+        public override bool IsConnected
+        {
+            get
+            {
+                if (_channel != null)
+                    return _channel.Open;
+                return false;
+            }
+        }
+
+        public NettyClient(URL url, IChannelHandler handler) : base(url, WrapChannelHandler(url, handler))
         {
         }
 
         protected override async Task DoOpenAsync()
         {
-             _bootstrap = new Bootstrap();
+            _bootstrap = new Bootstrap();
             _bootstrap.Channel<TcpSocketChannel>()
                 .Group(new MultithreadEventLoopGroup(1))
                 .Option(ChannelOption.SoKeepalive, true)
@@ -43,7 +50,7 @@ namespace Dubbo.Net.Remoting.Netty
                 }));
             try
             {
-                _channel =   await _bootstrap.ConnectAsync(Url.Ip, Url.Port);
+                _channel = await _bootstrap.ConnectAsync(Url.Ip, Url.Port);
             }
             catch (Exception e)
             {
@@ -69,7 +76,7 @@ namespace Dubbo.Net.Remoting.Netty
 
         protected override IChannel GetChannel()
         {
-            return new NettyChannel(_channel,Url,ChannelHander);
+            return new NettyChannel(_channel, Url, ChannelHander);
         }
     }
 }

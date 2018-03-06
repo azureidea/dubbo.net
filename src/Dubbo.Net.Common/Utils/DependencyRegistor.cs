@@ -17,14 +17,15 @@ namespace Dubbo.Net.Common.Utils
             {
                 "Dubbo.Net.Common",
                 "Dubbo.Net.Remoting",
-                "Dubbo.Net.Proxy",
                 "Dubbo.Net.Remoting.Netty",
                 "Dubbo.Net.Rpc",
+                "Dubbo.Net.Applications",
             };
             list.AddRange(assemblies);
             //ObjectFactory.Register(typeof(IPafUserRepository),typeof(PafUserRepository));
             //ObjectFactory.Register(typeof(IPafUserService),typeof(PafUserService));
-            var assemblys = list.Select(Assembly.Load).ToList(); //AppDomain.CurrentDomain.GetAssemblies().ToList();
+            var ass= AppDomain.CurrentDomain.GetAssemblies().ToList();
+            var assemblys = list.Concat(ass.Select(a=>a.FullName)).Select(Assembly.Load).ToList(); //AppDomain.CurrentDomain.GetAssemblies().ToList();
             List<Type> types = new List<Type>();
             foreach (var assembly in assemblys)
             {

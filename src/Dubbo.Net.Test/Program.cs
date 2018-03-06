@@ -1,19 +1,13 @@
 ﻿using Dubbo.Net.Common;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using Dubbo.Net.Common.Serialize.Supports.Json;
+using System.Diagnostics;
+using System.Net;
+using System.Threading.Tasks;
+using Dubbo.Net.Applications;
+using Dubbo.Net.Common.Serialize;
 using Dubbo.Net.Common.Utils;
-using Dubbo.Net.Proxy;
-using Dubbo.Net.Remoting;
-using Dubbo.Net.Remoting.Exchange;
-using Dubbo.Net.Remoting.Exchange.Support.Header;
-using Dubbo.Net.Remoting.Netty;
-using Dubbo.Net.Remoting.Transport;
-using Dubbo.Net.Remoting.Transport.Dispatcher.All;
-using Dubbo.Net.Rpc.Infrastructure;
-using Dubbo.Net.Rpc.Procotol;
+using Dubbo.Net.Config;
 
 namespace Dubbo.Net.Test
 {
@@ -21,63 +15,50 @@ namespace Dubbo.Net.Test
     {
         static void Main(string[] args)
         {
-            var url = new URL
+
+            var protocol = new ProtocolConfig
             {
-                Ip = "192.168.2.90",
-                Port = 20882,
-                ServiceName = "com.mc.userconnect.api.service.PafUserService",
-                Path = "com.mc.userconnect.api.service.PafUserService",
+                Name = "dubbo",
+                Serialize = "fastjson"
             };
-            url.AddParameterIfAbsent("send.reconnect", "true");
+            var registryConfig = new RegistryConfig("consul://127.0.0.1:8500");
+
+            DubboApplication.Init(protocol,registryConfig);
             //ObjectFactory.Register<ILogger,ConsoleLog>();
-            //ObjectFactory.Register<IDispatcher,AllDispatcher>();
-            //ObjectFactory.Register<IProtocol,DubboProtocol>("dubbo");
-            //ObjectFactory.Register<ITransporter,NettyTransporter>("netty");
-            //ObjectFactory.Register<IExchanger,HeaderExchanger>("header");
             //ObjectFactory.Register<IConfigUtils, CacheConfigUtil>();
-            //CodecSupport.RegisterSerializer(new FastJsonSerialization());
-            DependencyRegistor.Register( "Dubbo.Net.Test");
-            RequestTest(url);
+            RequestTest(20000,true);
             
             Console.ReadLine();
         }
 
-        static void RequestTest(URL url)
+        static void RequestTest(int count,bool parall=false )
         {
-
-            var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-            var types = new List<Type>();
-            foreach (var assembly in assemblies)
+            var s = ObjectFactory.GetInstance<IPafUserService>();
+            var result1 =  s.GetAccessToken(10024, 1191382).Result;
+            var i = 0;
+            var watch = new Stopwatch();
+            watch.Start();
+            if (parall)
             {
-                var ts = assembly.GetTypes();
-                foreach (var type in ts)
+                var tasks = new List<Task>(count);
+                while (i < count)
                 {
-                    if(!type.IsInterface)
-                        continue;
-                    var attr = type.GetCustomAttribute<ReferAttribute>();
-                    if (attr != null)
-                    {
-                        types.Add(type);
-                    }
+                    tasks.Add(s.GetAccessToken(10024, 1191382));
+                    i++;
+                }
+                 Task.WaitAll(tasks.ToArray());
+            }
+            else
+            {
+                while (i < count)
+                {
+                    s.GetAccessToken(10024, 1191382).Wait();
+                    i++;
                 }
             }
-
-            foreach (var type in types)
-            {
-                TypeMatch.RegisterType(type);
-                //todo generator url from config
-                var impl = TypeCreator.NewAssembly(type);
-                var ctor = impl.GetConstructor(new[] {typeof(URL)});
-                var service = ctor.Invoke(new object[] {url});
-                ObjectFactory.Register(type,impl);
-                ObjectFactory.Register(impl,service);
-            }
-
-            var s = ObjectFactory.GetInstance<IPafUserService>();
-
-
-            var result1 =  s.GetAccessToken(10024, 1191382).Result;
-
+            watch.Stop();
+            
+            Console.WriteLine($"{i}次调用，共耗时:{watch.ElapsedMilliseconds}ms,平均耗时:{Math.Round((decimal)watch.ElapsedMilliseconds/i,2)}ms");
         }
 
 

@@ -38,6 +38,9 @@
     <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <HintPath>..\packages\Castle.Core.4.2.1\lib\net45\Castle.Core.dll</HintPath>
     </Reference>
+    <Reference Include="Consul, Version=0.7.2.4, Culture=neutral, PublicKeyToken=20a6ad9a81df1d95, processorArchitecture=MSIL">
+      <HintPath>..\packages\Consul.0.7.2.4\lib\net45\Consul.dll</HintPath>
+    </Reference>
     <Reference Include="DotNetty.Buffers, Version=0.4.7.0, Culture=neutral, PublicKeyToken=bc13ca065fa06c29, processorArchitecture=MSIL">
       <HintPath>..\packages\DotNetty.Buffers.0.4.7\lib\net45\DotNetty.Buffers.dll</HintPath>
     </Reference>
@@ -131,6 +134,7 @@
       <HintPath>..\packages\System.Net.Http.4.3.3\lib\net46\System.Net.Http.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Net.Http.WebRequest" />
     <Reference Include="System.Net.Sockets, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Net.Sockets.4.3.0\lib\net46\System.Net.Sockets.dll</HintPath>
     </Reference>
@@ -194,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheConfigUtil.cs" />
-    <Compile Include="Class1.cs" />
     <Compile Include="TypeCreator.cs" />
     <Compile Include="ConsoleLog.cs" />
     <Compile Include="IPafUserService.cs" />
@@ -209,13 +212,17 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Dubbo.Net.Applications\Dubbo.Net.Applications.csproj">
+      <Project>{aaff0b99-ec70-4386-8d77-7cf0d9fd5b75}</Project>
+      <Name>Dubbo.Net.Applications</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj">
       <Project>{d10fc4af-9f93-4f03-b182-7e355cbe090e}</Project>
       <Name>Dubbo.Net.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Dubbo.Net.Proxy\Dubbo.Net.Proxy.csproj">
-      <Project>{ef825a9a-faea-40dd-a3dd-9d23e0bb96f2}</Project>
-      <Name>Dubbo.Net.Proxy</Name>
+    <ProjectReference Include="..\Dubbo.Net.Config\Dubbo.Net.Config.csproj">
+      <Project>{597ea907-5e99-47d0-aa81-f0ef2ffd5fad}</Project>
+      <Name>Dubbo.Net.Config</Name>
     </ProjectReference>
     <ProjectReference Include="..\Dubbo.Net.Remoting.DotNetty\Dubbo.Net.Remoting.DotNetty.csproj">
       <Project>{8c7b7bd9-19e5-465c-8b4c-3562efccfd1a}</Project>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Dubbo.Net.Common;
@@ -49,6 +48,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
             }
             try
             {
+                //Console.WriteLine("step5:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 var isAsync = RpcUtils.IsAsync(GetUrl(), invocation);
                 var isOneway = RpcUtils.IsOneway(GetUrl(), invocation);
                 var timeout = GetUrl().GetMethodParameter(methodName, Constants.TimeoutKey, Constants.DefaultTimeout.ToString());

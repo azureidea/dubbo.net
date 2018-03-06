@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Dubbo.Net.Common
+﻿namespace Dubbo.Net.Common
 {
     /// <summary>
     /// dubbo相关常量
@@ -82,5 +78,11 @@ namespace Dubbo.Net.Common
         public const string ConnectionsKey = "connections";
         public const string  LazyConnectKey = "lazy";
         public const string HeartbeatTimeoutKey = "heartbeat.timeout";
+        public const string SideKey = "side";
+        public const string ProviderSide = "provider";
+
+        public const string ConsumerSide = "consumer";
+        public const string TimestampKey = "timestamp";
+        public const string PidKey = "pid";
     }
 }

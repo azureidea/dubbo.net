@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common;
 using Dubbo.Net.Remoting;
@@ -23,9 +22,11 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
             List<object> result=new List<object>();
             do
             {
+                //Console.WriteLine("begin decode:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 object obj = codec.Decode(channel, buffer);
                 if (obj is DecodeResult decodeResult && decodeResult==DecodeResult.NeedMoreInput)
                 {
+                    //Console.WriteLine("need more input:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                     buffer.SetReaderIndex(save);
                     break;
                 }
@@ -36,6 +37,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
                     save = buffer.ReaderIndex;
                 }
             } while (true);
+            //Console.WriteLine("decode completed:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             if (result.Count==0)
             {
                 return DecodeResult.NeedMoreInput;
@@ -62,10 +64,14 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
                 {
                     /* ignore */
                 }
-            } else if (result is Response) {
+            } else if (result is Response res) {
                 try
                 {
-                    ((RpcResult)((Response)result).Mresult).SetAttachment(Constants.OutputKey, bytes.ToString());
+                    if (!string.IsNullOrEmpty(res.MerrorMsg))
+                    {
+                        res.Mresult = res.Mresult ?? new RpcResult(new Exception(res.MerrorMsg));
+                    }
+                    ((RpcResult)(res).Mresult).SetAttachment(Constants.OutputKey, bytes.ToString());
                 }
                 catch (Exception e)
                 {

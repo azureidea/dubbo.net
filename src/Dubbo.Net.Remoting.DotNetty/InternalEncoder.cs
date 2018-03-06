@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using DotNetty.Buffers;
 using DotNetty.Codecs;
 using DotNetty.Transport.Channels;
@@ -27,7 +25,9 @@ namespace Dubbo.Net.Remoting.Netty
             NettyChannel channel = NettyChannel.GetOrAddChannel(ch, _url, _handler);
             try
             {
+                //Console.WriteLine("encode:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
                 _codec.Encode(channel, output, message);
+                //Console.WriteLine("encoded:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             }
             finally
             {

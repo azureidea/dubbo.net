@@ -12,12 +12,104 @@ namespace Dubbo.Net.Common
         public string Ip { get; set; }
         public string ServiceName { get; set; }
         public string Path { get; set; }
+        public string Protocol { get; set; }
         private readonly Dictionary<string, string> _parameters=new Dictionary<string, string>();
         public static URL ValueOf(string url)
         {
-            return new URL();
+            if (string.IsNullOrWhiteSpace(url))
+            {
+                throw new ArgumentException("url == null");
+            }
+            String protocol = null;
+            String username = null;
+            String password = null;
+            String host = null;
+            int port = 0;
+            String path = null;
+            Dictionary<String, String> parameters = null;
+            int i = url.IndexOf("?", StringComparison.Ordinal); // seperator between body and parameters 
+            if (i >= 0)
+            {
+                String[] parts = url.Substring(i + 1).Split('&');
+                parameters = new Dictionary<string, string>();
+                foreach (var part in parts)
+                {
+                    if (!string.IsNullOrWhiteSpace(part))
+                    {
+                        int j = part.IndexOf('=');
+                        if (j >= 0)
+                        {
+                            parameters.Add(part.Substring(0, j), part.Substring(j + 1));
+                        }
+                        else
+                        {
+                            parameters.Add(part, part);
+                        }
+                    }
+                }
+                url = url.Substring(0, i);
+            }
+            i = url.IndexOf("://", StringComparison.Ordinal);
+            if (i >= 0)
+            {
+                if (i == 0) throw new Exception("url missing protocol: \"" + url + "\"");
+                protocol = url.Substring(0, i);
+                url = url.Substring(i + 3);
+            }
+            else
+            {
+                // case: file:/path/to/file.txt
+                i = url.IndexOf(":/", StringComparison.Ordinal);
+                if (i >= 0)
+                {
+                    if (i == 0) throw new Exception("url missing protocol: \"" + url + "\"");
+                    protocol = url.Substring(0, i);
+                    url = url.Substring(i + 1);
+                }
+            }
+
+            i = url.IndexOf("/", StringComparison.Ordinal);
+            if (i >= 0)
+            {
+                path = url.Substring(i + 1);
+                url = url.Substring(0, i);
+            }
+            i = url.IndexOf("@", StringComparison.Ordinal);
+            if (i >= 0)
+            {
+                username = url.Substring(0, i);
+                int j = username.IndexOf(":", StringComparison.Ordinal);
+                if (j >= 0)
+                {
+                    password = username.Substring(j + 1);
+                    username = username.Substring(0, j);
+                }
+                url = url.Substring(i + 1);
+            }
+            i = url.IndexOf(":", StringComparison.Ordinal);
+            if (i >= 0 && i < url.Length - 1)
+            {
+                 int.TryParse(url.Substring(i + 1),out port);
+                url = url.Substring(0, i);
+            }
+            if (url.Length> 0) host = url;
+            return new URL(protocol,username,password,  host, port, path, parameters);
+        }
+        public URL() { }
+
+        public URL(string protocol, string host, int port, string path, Dictionary<string, string> parameters):this(protocol,null,null,host,port,path,parameters)
+        {
         }
 
+        public URL(string protocol, string userName,string password,string host, int port,string path, Dictionary<string, string> parameters)
+        {
+            Protocol = protocol;
+            Ip = host;
+            Port = port < 0 ? 0 : port;
+            Path = path;
+            ServiceName = path;
+            _parameters = parameters ?? new Dictionary<string, string>();
+        }
         public T GetParameter<T>(string key, T defaultValue )
         {
             if (!_parameters.ContainsKey(key))
@@ -123,6 +215,17 @@ namespace Dubbo.Net.Common
             if (string.IsNullOrEmpty(value))
                 return "";
             return HttpUtility.UrlDecode(value, Encoding.UTF8);
+        }
+
+        public string ToRegistryString()
+        {
+            return $"{Protocol}://{Ip}:{Port}";
+        }
+
+        public string GetId()
+        {
+            return GetParameter(Constants.SideKey, Constants.ProviderSide) + "_" + Protocol + "_" + Ip
+                + "_" + Port + "_";
         }
     }
 }

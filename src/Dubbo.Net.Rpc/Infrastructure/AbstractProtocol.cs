@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Text;
 using Dubbo.Net.Common;
 using Dubbo.Net.Common.Utils;
 
@@ -11,24 +10,22 @@ namespace Dubbo.Net.Rpc.Infrastructure
     {
         protected readonly ConcurrentDictionary<string,IExporter> Exporters=new ConcurrentDictionary<string, IExporter>();
 
-        readonly List<IInvoker> _invokers;
+        protected readonly ConcurrentDictionary<string, List<IInvoker>> _invokers = new ConcurrentDictionary<string, List<IInvoker>>();
 
         protected AbstractProtocol()
         {
-            _invokers=new List<IInvoker>();
         }
-        public  List<IInvoker> Invokers=>_invokers;
         protected readonly ILogger Logger = ObjectFactory.GetInstance<ILogger>();
         private static IConfigUtils _configUtils = ObjectFactory.GetInstance<IConfigUtils>();
 
         protected static string ServiceKey(URL url)
         {
-            return "";
+            return url.ServiceName;
         }
 
         protected static string ServiceKey(int port, string serviceName, string serviceVersion, string serviceGroup)
         {
-            return "";
+            return serviceName;
         }
 
         protected static int GetServerShutdownTimeout()
@@ -59,25 +56,36 @@ namespace Dubbo.Net.Rpc.Infrastructure
         public abstract IExporter Export(IInvoker invoker);
 
         public abstract IInvoker Refer(URL url);
+        List<IInvoker> IProtocol.Invokers(string serviceName)
+        {
+            if (_invokers.TryGetValue(serviceName, out var list))
+            {
+                return list;
+            }
+            return new List<IInvoker>();
+        }
 
         public virtual void Destroy()
         {
-            foreach (IInvoker invoker in Invokers)
+            foreach (var kv in _invokers)
             {
-                if (invoker != null)
+                foreach (var invoker in kv.Value)
                 {
-                    Invokers.Remove(invoker);
-                    try
+                    if (invoker != null)
                     {
-                        if (Logger.InfoEnabled)
+                        kv.Value.Remove(invoker);
+                        try
                         {
-                            Logger.Info("Destroy reference: " + invoker.GetUrl());
+                            if (Logger.InfoEnabled)
+                            {
+                                Logger.Info("Destroy reference: " + invoker.GetUrl());
+                            }
+                            invoker.Destroy();
                         }
-                        invoker.Destroy();
-                    }
-                    catch (Exception t)
-                    {
-                        Logger.Warn(t.Message, t);
+                        catch (Exception t)
+                        {
+                            Logger.Warn(t.Message, t);
+                        }
                     }
                 }
             }

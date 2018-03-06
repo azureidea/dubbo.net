@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using DotNetty.Buffers;
 using Dubbo.Net.Common.Buffer;
 using Dubbo.Net.Common.Serialize;
