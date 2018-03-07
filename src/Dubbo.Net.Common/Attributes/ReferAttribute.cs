@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Dubbo.Net.Common.Utils
+namespace Dubbo.Net.Common.Attributes
 {
     public class ReferAttribute:Attribute
     {

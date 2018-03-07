@@ -40,7 +40,7 @@ namespace Dubbo.Net.Common
                 return false;
                 //return Version.class.getClassLoader().getResource(path) != null;
             }
-            catch (Exception t)
+            catch (Exception )
             {
                 return false;
             }

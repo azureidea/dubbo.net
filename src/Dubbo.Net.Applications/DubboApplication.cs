@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Reflection;
 using Dubbo.Net.Common;
+using Dubbo.Net.Common.Attributes;
 using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Config;
 using Dubbo.Net.Rpc.Registry;
@@ -15,7 +16,7 @@ namespace Dubbo.Net.Applications
         /// </summary>
         public static void Init(ProtocolConfig protocol, RegistryConfig registryConfig)
         {
-            DependencyRegistor.Register();
+            DependencyRegistor.Register("Dubbo.Net.Applications");
             var registryUrl = URL.ValueOf(registryConfig.ToRegistryString());
             var registryFactory = ObjectFactory.GetInstance<IRegistryFactory>(registryUrl.Protocol);
             var registry = registryFactory.GetRegistry(registryUrl);

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE;DEBUG;NetCore</DefineConstants>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dubbo.Net.Common\Dubbo.Net.Common.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Config\Dubbo.Net.Config.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Proxy\Dubbo.Net.Proxy.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Remoting.DotNetty\Dubbo.Net.Remoting.DotNetty.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Remoting\Dubbo.Net.Remoting.csproj" />
+    <ProjectReference Include="..\Dubbo.Net.Rpc\Dubbo.Net.Rpc.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -47,7 +47,7 @@ namespace Dubbo.Net.Remoting.Telnet
                     }
                     buf.Append(result);
                 }
-                catch (Exception t)
+                catch (Exception )
                 {
                     buf.Append("Unsupported command: ");
                     buf.Append(command);

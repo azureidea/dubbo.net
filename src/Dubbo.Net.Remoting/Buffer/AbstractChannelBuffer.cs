@@ -299,11 +299,7 @@ namespace Dubbo.Net.Remoting.Buffer
         {
             return ToByteBuffer(_readerIndex, ReadableBytes);
         }
-
-        public override bool Equals(Object o)
-        {
-            return o is IChannelBuffer&& ChannelBuffers.Equals((IChannelBuffer) this, (IChannelBuffer)o);
-        }
+        
 
         public abstract IChannelBufferFactory Factory { get; }
 

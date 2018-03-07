@@ -12,7 +12,6 @@ namespace Dubbo.Net.Remoting.Buffer
         IChannelBuffer Copy(int index, int len);
         void DiscardReadBytes();
         void EnsureWriteableBytes(int writeableBytes);
-        bool Equals(object o);
         IChannelBufferFactory Factory { get; }
         byte GetByte(int index);
         void GetBytes(int index, byte[] dst);

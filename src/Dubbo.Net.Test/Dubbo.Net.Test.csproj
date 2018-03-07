@@ -21,7 +21,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NET462</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -198,7 +198,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CacheConfigUtil.cs" />
-    <Compile Include="TypeCreator.cs" />
     <Compile Include="ConsoleLog.cs" />
     <Compile Include="IPafUserService.cs" />
     <Compile Include="Models\UserConnectStringResponse.cs" />

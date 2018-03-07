@@ -110,7 +110,7 @@ namespace Dubbo.Net.Remoting.Exchange.codec
                             input.Position = input.Available();
                         }
                     }
-                    catch (IOException e)
+                    catch (IOException )
                     {
                     }
                 }

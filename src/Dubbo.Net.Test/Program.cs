@@ -24,8 +24,6 @@ namespace Dubbo.Net.Test
             var registryConfig = new RegistryConfig("consul://127.0.0.1:8500");
 
             DubboApplication.Init(protocol,registryConfig);
-            //ObjectFactory.Register<ILogger,ConsoleLog>();
-            //ObjectFactory.Register<IConfigUtils, CacheConfigUtil>();
             RequestTest(20000,true);
             
             Console.ReadLine();

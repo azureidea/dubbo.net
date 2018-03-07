@@ -10,7 +10,7 @@ namespace Dubbo.Net.Remoting.Exchange.Support.Header
     {
         private const string KeyReadTimstamp = "READ_TIMESTAMP";
         private const string KeyWriteTimestamp = "WRITE_TIMESTAMP";
-        private static ILogger _logger;
+        private static readonly ILogger Logger=ObjectFactory.GetInstance<ILogger>();
         public HeartbeatHandler(IChannelHandler handler) : base(handler)
         {
         }
@@ -46,12 +46,12 @@ namespace Dubbo.Net.Remoting.Exchange.Support.Header
                     Response res=new Response(req.Mid,req.Mversion);
                     res.SetEvent(Response.HeartbeatEvent);
                     await channel.SendAsync(res);
-                    if (_logger.InfoEnabled)
+                    if (Logger.InfoEnabled)
                     {
                         int heartbeat = channel.Url.GetParameter(Constants.HeartbeatKey, 0);
-                        if (_logger.DebugEnabled)
+                        if (Logger.DebugEnabled)
                         {
-                            _logger.Debug("Received heartbeat from remote channel " + channel.RemoteAddress
+                            Logger.Debug("Received heartbeat from remote channel " + channel.RemoteAddress
                                                                                    + ", cause: The channel has no data-transmission exceeds a heartbeat period"
                                                                                    + (heartbeat > 0 ? ": " + heartbeat + "ms" : ""));
                         }

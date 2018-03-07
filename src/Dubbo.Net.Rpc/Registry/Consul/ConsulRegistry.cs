@@ -15,7 +15,7 @@ namespace Dubbo.Net.Rpc.Registry.Consul
         private readonly ConsulEcwidClient _client;
         private readonly URL _url;
         private readonly ConsulHeartbeatManager _heartbeat;
-        private CancellationTokenSource _source;
+        private readonly CancellationTokenSource _source;
         readonly ConcurrentDictionary<string,string> _serviceNames=new ConcurrentDictionary<string, string>();
         public ConsulRegistry(URL url)
         {
@@ -42,7 +42,7 @@ namespace Dubbo.Net.Rpc.Registry.Consul
 
         public void Destroy()
         {
-           
+            _source.Cancel();
         }
 
         public async Task Register(URL url)

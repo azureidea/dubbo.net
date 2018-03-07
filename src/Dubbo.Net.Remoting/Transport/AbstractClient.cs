@@ -7,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Remoting.Exchange.Support.Header;
-using Dubbo.Net.Rpc.Support;
 
 namespace Dubbo.Net.Remoting.Transport
 {
@@ -19,11 +18,9 @@ namespace Dubbo.Net.Remoting.Transport
         private readonly bool _sendReconnect;
         private readonly long _shutdownTimeout;
         private readonly int _reconnectWarningPeriod;
-        private readonly object _connectLock = new object();
         private int _reconnectCount;
         private bool _connectError;
         private long _lastConnectedTime = 0;
-        private volatile bool _checked = false;
         private readonly ConcurrentDictionary<long, TaskCompletionSource<Response>> _resultDictionary =
             new ConcurrentDictionary<long, TaskCompletionSource<Response>>();
 

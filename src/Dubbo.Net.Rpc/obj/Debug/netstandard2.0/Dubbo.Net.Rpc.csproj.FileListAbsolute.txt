@@ -11,5 +11,3 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.AssemblyInfo.cs
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\obj\Debug\netstandard2.0\Dubbo.Net.Rpc.pdb
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\System.Configuration.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Rpc\bin\Debug\netstandard2.0\System.Security.dll

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Dubbo.Net.Common.Attributes;
 using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Common

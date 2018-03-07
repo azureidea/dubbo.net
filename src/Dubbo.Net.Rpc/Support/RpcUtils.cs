@@ -31,7 +31,7 @@ namespace Dubbo.Net.Rpc.Support
                     }
                 }
             }
-            catch (Exception t)
+            catch (Exception )
             {
                 //
             }
@@ -60,7 +60,7 @@ namespace Dubbo.Net.Rpc.Support
                     }
                 }
             }
-            catch (Exception t)
+            catch (Exception )
             {
                 // ignored
             }

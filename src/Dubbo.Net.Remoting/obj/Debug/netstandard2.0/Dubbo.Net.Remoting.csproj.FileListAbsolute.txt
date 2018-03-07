@@ -9,5 +9,3 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.AssemblyInfo.cs
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\obj\Debug\netstandard2.0\Dubbo.Net.Remoting.pdb
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\System.Configuration.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting\bin\Debug\netstandard2.0\System.Security.dll

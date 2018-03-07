@@ -1,4 +1,5 @@
 ﻿
+using Dubbo.Net.Common.Attributes;
 using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Test

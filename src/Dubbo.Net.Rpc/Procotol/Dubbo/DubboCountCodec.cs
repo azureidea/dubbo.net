@@ -60,7 +60,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
                 {
                     ((RpcInvocation)request.Mdata).SetAttachment(Constants.InputKey, bytes.ToString());
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     /* ignore */
                 }
@@ -73,7 +73,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
                     }
                     ((RpcResult)(res).Mresult).SetAttachment(Constants.OutputKey, bytes.ToString());
                 }
-                catch (Exception e)
+                catch (Exception )
                 {
                     /* ignore */
                 }

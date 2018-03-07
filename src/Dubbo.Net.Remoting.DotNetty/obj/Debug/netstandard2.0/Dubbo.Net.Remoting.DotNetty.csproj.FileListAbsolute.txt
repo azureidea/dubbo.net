@@ -4,8 +4,6 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Common.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Rpc.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\System.Configuration.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\System.Security.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Common.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Remoting.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Remoting.DotNetty\bin\Debug\netstandard2.0\Dubbo.Net.Rpc.pdb

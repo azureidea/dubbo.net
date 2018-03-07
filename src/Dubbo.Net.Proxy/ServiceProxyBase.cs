@@ -15,28 +15,45 @@ namespace Dubbo.Net.Proxy
     public abstract class ServiceProxyBase
     {
         private readonly IProtocol _protocol;
-        private  int _invokeCount=0;
-        private IInvoker Get_invokers()
+        private int _invokeCount = 0;
+        private readonly string _serviceName;
+        private IInvoker GetInvoker()
         {
-            return _protocol.Invokers[Interlocked.Increment(ref _invokeCount)%_protocol.Invokers.Count];
+            var invokers = _protocol.Invokers(_serviceName);
+            if (invokers.Count == 0)
+            {
+                return null;
+            }
+            return invokers[Interlocked.Increment(ref _invokeCount) % invokers.Count];
         }
 
         protected ServiceProxyBase(URL url)
         {
             var protocolName = url.Protocol;
             _protocol = ObjectFactory.GetInstance<IProtocol>(protocolName);
-            _protocol.Refer(url);
+            _serviceName = url.ServiceName;
+            //_protocol.Refer(url);
         }
 
-        protected async Task<T> Invoke<T>(MethodInfo method,object[] args)
+        protected async Task<T> Invoke<T>(MethodInfo method, object[] args)
         {
+            //Console.WriteLine("step1:"+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             var inv = new RpcInvocation(method, args);
+            //JsonConvert.SerializeObject(inv);
+            //Console.WriteLine("step2:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             inv.ReturnType = typeof(T);
             //todo 这里可以添加负载均衡策略、客户端过滤器等
-            var result= await Get_invokers().Invoke(inv);
-            if (result.HasException||result.Exception!=null)
+            IResult result = null;
+            var invoker = GetInvoker();
+            //Console.WriteLine("step3:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            if (invoker == null)
+                throw new Exception("no service found!");
+            result = await invoker.Invoke(inv);
+            // Console.WriteLine("step12:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
+            if (result.HasException || result.Exception != null)
                 throw result.Exception;
-            var value= ((Response) result.Value).Mresult;
+            var value = ((Response)result.Value).Mresult;
+            //Console.WriteLine("step13:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             return (T)((RpcResult)value).Value;
         }
     }

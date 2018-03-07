@@ -142,7 +142,7 @@ namespace Dubbo.Net.Rpc.Registry.Consul
                 return url.GetParameter(Constants.SideKey,Constants.ProviderSide) + "_" + url.Protocol + "_" + url.Ip
                         + "_" + url.Port+ "_" + Process.GetCurrentProcess().Id;
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 return "";
             }

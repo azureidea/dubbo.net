@@ -1,0 +1,17 @@
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Proxy.deps.json
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Proxy.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Proxy.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Common.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Remoting.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Remoting.Netty.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Rpc.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Remoting.Netty.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Remoting.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Rpc.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netcoreapp2.0\Dubbo.Net.Common.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.csprojResolveAssemblyReference.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.csproj.CoreCompileInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.AssemblyInfoInputs.cache
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.AssemblyInfo.cs
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netcoreapp2.0\Dubbo.Net.Proxy.pdb

@@ -3,13 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Dubbo.Net.Common.Utils;
 
 namespace Dubbo.Net.Remoting.Transport
 {
     public class ChannelHandlerDispatcher:IChannelHandler
     {
 
-        static ILogger _log;
+        static ILogger _log=ObjectFactory.GetInstance<ILogger>();
         public List<IChannelHandler> ChannelHandlers { get; } = new List<IChannelHandler>();
 
         public ChannelHandlerDispatcher() { }

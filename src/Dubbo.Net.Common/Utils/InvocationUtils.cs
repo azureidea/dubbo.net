@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace Dubbo.Net.Rpc.Support
+namespace Dubbo.Net.Common.Utils
 {
     public static class InvocationUtils
     {

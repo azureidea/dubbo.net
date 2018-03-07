@@ -19,7 +19,7 @@ namespace Dubbo.Net.Remoting.Transport
                                                   + ", cause: Channel closed. channel: " + Address + " -> " + RemoteAddress);
             }
 
-            return null;
+            return await Task.FromResult((Response)null);
         }
 
 

@@ -6,25 +6,29 @@ namespace Dubbo.Net.Remoting.Transport
     public class ChannelHandlerAdapter : IChannelHandler
     {
 
-        public virtual async Task ConnectAsync(IChannel channel)
+        public virtual  Task ConnectAsync(IChannel channel)
         {
+            return Task.CompletedTask;
         }
 
-        public virtual async Task DisconnectAsync(IChannel channel)
+        public virtual  Task DisconnectAsync(IChannel channel)
         {
+            return Task.CompletedTask;
         }
 
-        public virtual async Task SentAsync(IChannel channel, object message)
+        public virtual  Task SentAsync(IChannel channel, object message)
         {
+            return Task.CompletedTask;
         }
 
-        public virtual async Task RecivedAsync(IChannel channel, object message)
+        public virtual  Task RecivedAsync(IChannel channel, object message)
         {
-           
+            return Task.CompletedTask;
         }
 
-        public virtual async Task CaughtAsync(IChannel channel, Exception exception)
+        public virtual  Task CaughtAsync(IChannel channel, Exception exception)
         {
+            return Task.CompletedTask;
         }
     }
 }

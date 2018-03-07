@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Reflection;
+using Dubbo.Net.Common.Attributes;
 
 namespace Dubbo.Net.Common.Utils
 {

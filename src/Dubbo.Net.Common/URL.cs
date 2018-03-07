@@ -122,7 +122,7 @@ namespace Dubbo.Net.Common
                 var result=Convert.ChangeType(v, typeof(T));
                 return (T)result;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return defaultValue;
             }

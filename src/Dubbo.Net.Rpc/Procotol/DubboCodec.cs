@@ -2,6 +2,7 @@
 using System.IO;
 using Dubbo.Net.Common;
 using Dubbo.Net.Common.Serialize;
+using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Remoting;
 using Dubbo.Net.Remoting.Exchange.codec;
 using Dubbo.Net.Rpc.Procotol.Dubbo;

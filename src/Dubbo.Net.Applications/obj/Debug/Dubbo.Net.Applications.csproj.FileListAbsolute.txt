@@ -101,14 +101,14 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Config
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Remoting.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Remoting.Netty.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Rpc.dll
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Newtonsoft.Json.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Common.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Config.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Remoting.Netty.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Remoting.pdb
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Dubbo.Net.Rpc.pdb
+E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Newtonsoft.Json.xml
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\obj\Debug\Dubbo.Net.Applications.csprojResolveAssemblyReference.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\obj\Debug\Dubbo.Net.Applications.csproj.CoreCompileInputs.cache
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\obj\Debug\Dubbo.Net.Applications.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\obj\Debug\Dubbo.Net.Applications.pdb
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Newtonsoft.Json.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Applications\bin\Debug\Newtonsoft.Json.xml

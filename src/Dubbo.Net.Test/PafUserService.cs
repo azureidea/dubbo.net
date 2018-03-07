@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using Dubbo.Net.Applications;
 using Dubbo.Net.Common;
+using Dubbo.Net.Common.Attributes;
 using Dubbo.Net.Common.Utils;
 using Dubbo.Net.Test.Models;
 

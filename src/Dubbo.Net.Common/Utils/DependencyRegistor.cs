@@ -19,7 +19,6 @@ namespace Dubbo.Net.Common.Utils
                 "Dubbo.Net.Remoting",
                 "Dubbo.Net.Remoting.Netty",
                 "Dubbo.Net.Rpc",
-                "Dubbo.Net.Applications",
             };
             list.AddRange(assemblies);
             //ObjectFactory.Register(typeof(IPafUserRepository),typeof(PafUserRepository));

@@ -15,5 +15,3 @@ E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netstandard2.0\Dubbo.Ne
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netstandard2.0\Dubbo.Net.Proxy.AssemblyInfo.cs
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netstandard2.0\Dubbo.Net.Proxy.dll
 E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\obj\Debug\netstandard2.0\Dubbo.Net.Proxy.pdb
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netstandard2.0\System.Configuration.dll
-E:\Work Code\net\dubbo.net\src\Dubbo.Net.Proxy\bin\Debug\netstandard2.0\System.Security.dll

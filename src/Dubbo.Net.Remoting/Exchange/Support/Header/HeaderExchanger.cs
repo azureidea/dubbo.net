@@ -16,7 +16,7 @@ namespace Dubbo.Net.Remoting.Exchange.Support.Header
         {
             var transport = ObjectFactory.GetInstance<ITransporter>(url.GetParameter("transtport", "netty"));
             //todo 
-            return new HeaderExchangeClient(transport.Connected(url,handler),true);
+            return await Task.FromResult(new HeaderExchangeClient(transport.Connected(url,handler),true));
         }
     }
 }

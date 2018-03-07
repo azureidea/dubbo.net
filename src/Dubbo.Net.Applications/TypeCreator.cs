@@ -3,6 +3,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Text;
+using Dubbo.Net.Common.Attributes;
 using Dubbo.Net.Common.Utils;
 using Microsoft.CSharp;
 
@@ -64,7 +65,7 @@ namespace Dubbo.Net.Applications
             var className = (interfaceName.StartsWith("I") ? interfaceName.Substring(1) : interfaceName) + "Proxy";
             StringBuilder classSource = new StringBuilder();
             classSource.Append(
-                $"using System.Threading.Tasks;\nusing Dubbo.Net.Common;\nusing Dubbo.Net.Common.Utils;\nusing Dubbo.Net.Applications;\nusing Dubbo.Net.Test.Models; ");
+                $"using System.Threading.Tasks;\nusing Dubbo.Net.Common;\nusing Dubbo.Net.Common.Attributes;\nusing Dubbo.Net.Common.Utils;\nusing Dubbo.Net.Applications;\n ");
             classSource.Append("\nnamespace Dubbo.Net.ClientProxys{");
             classSource.Append("\npublic   class   " + className + ":ServiceProxyBase, " + interfaceType.FullName + " \n");
             classSource.Append("{\n");

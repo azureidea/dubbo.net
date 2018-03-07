@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Config", "Dubbo.N
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.Applications", "Dubbo.Net.Applications\Dubbo.Net.Applications.csproj", "{AAFF0B99-EC70-4386-8D77-7CF0D9FD5B75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dubbo.Net.CoreTest", "Dubbo.Net.CoreTest\Dubbo.Net.CoreTest.csproj", "{A9FD9E31-6847-4EC9-921C-63C2864213D6}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dubbo.Net.Proxy", "Dubbo.Net.Proxy\Dubbo.Net.Proxy.csproj", "{365DA7C0-2345-4D4E-985F-69EEA37E6018}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{AAFF0B99-EC70-4386-8D77-7CF0D9FD5B75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AAFF0B99-EC70-4386-8D77-7CF0D9FD5B75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AAFF0B99-EC70-4386-8D77-7CF0D9FD5B75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FD9E31-6847-4EC9-921C-63C2864213D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FD9E31-6847-4EC9-921C-63C2864213D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FD9E31-6847-4EC9-921C-63C2864213D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FD9E31-6847-4EC9-921C-63C2864213D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{365DA7C0-2345-4D4E-985F-69EEA37E6018}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{365DA7C0-2345-4D4E-985F-69EEA37E6018}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{365DA7C0-2345-4D4E-985F-69EEA37E6018}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{365DA7C0-2345-4D4E-985F-69EEA37E6018}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

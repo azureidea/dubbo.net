@@ -79,7 +79,7 @@ namespace Dubbo.Net.Rpc.Procotol.Dubbo
                         {
                             args[i] = inputo.ReadObject(pts[i]);
                         }
-                        catch (Exception e)
+                        catch (Exception )
                         {
                             //
                         }

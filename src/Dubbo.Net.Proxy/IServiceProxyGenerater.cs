@@ -7,7 +7,7 @@ namespace Dubbo.Net.Proxy
 {
     public interface IServiceProxyGenerater
     {
-       IEnumerable<Type> GenerateProxys(IEnumerable<Type> interfaceTypes);
-        SyntaxTree GenerateProxyTree(Type interfaceType);
+       Type GenerateProxys(Type interfaceType);
+        //SyntaxTree GenerateProxyTree(Type interfaceType);
     }
 }
