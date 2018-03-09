@@ -35,23 +35,16 @@ namespace Dubbo.Net.Applications
 
         protected async Task<T> Invoke<T>(MethodInfo method, object[] args)
         {
-            //Console.WriteLine("step1:"+DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            var inv = new RpcInvocation(method, args);
-            //JsonConvert.SerializeObject(inv);
-            //Console.WriteLine("step2:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
-            inv.ReturnType = typeof(T);
+            var inv = new RpcInvocation(method, args) {ReturnType = typeof(T)};
             //todo 这里可以添加负载均衡策略、客户端过滤器等
             IResult result = null;
             var invoker = GetInvoker();
-            //Console.WriteLine("step3:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             if (invoker == null)
                 throw new Exception("no service found!");
             result = await invoker.Invoke(inv);
-           // Console.WriteLine("step12:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             if (result.HasException  || result.Exception != null)
                 throw result.Exception;
             var value = ((Response)result.Value).Mresult;
-            //Console.WriteLine("step13:" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff"));
             return (T)((RpcResult)value).Value;
         }
     }

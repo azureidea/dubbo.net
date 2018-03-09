@@ -31,6 +31,7 @@ namespace Dubbo.Net.CoreTest
         {
             var s = ObjectFactory.GetInstance<IPafUserService>();
             var result1 =  s.GetAccessToken(10024, 1191382).Result;
+            var result2=s.GetAccessToken(10024, 1191382).Result;
             var i = 0;
             var watch = new Stopwatch();
             watch.Start();
